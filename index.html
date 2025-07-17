@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfigurator Stelaży Kavon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 30px;
+            color: #343a40;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header img {
+            max-width: 220px;
+            height: auto;
+        }
+        .header h1 {
+            color: #212529;
+            font-size: 2em;
+            margin: 15px 0;
+            font-weight: 700;
+        }
+        .step {
+            margin-bottom: 40px;
+        }
+        .step h2 {
+            color: #212529;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        select {
+            width: 100%;
+            max-width: 320px;
+            padding: 12px;
+            margin: 12px 0;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1em;
+            background-color: #fff;
+            transition: border-color 0.3s;
+        }
+        select:focus {
+            border-color: #212529;
+            outline: none;
+        }
+        .frame-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+        .frame-card {
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            background-color: #fff;
+        }
+        .frame-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .frame-card h3 {
+            font-size: 1.2em;
+            margin: 0 0 10px;
+            color: #212529;
+            font-weight: 500;
+        }
+        .frame-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(33, 37, 41, 0.15);
+            border-color: #212529;
+        }
+        .frame-card.selected {
+            border-color: #212529;
+            background-color: #e9ecef;
+            box-shadow: 0 4px 8px rgba(33, 37, 41, 0.2);
+        }
+        .confirmation {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        .confirmation p {
+            margin: 0 0 15px;
+            font-size: 1.1em;
+            color: #495057;
+        }
+        .confirmation button {
+            background-color: #212529;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+        .confirmation button:hover {
+            background-color: #343a40;
+        }
+        .advice {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: #495057;
+        }
+        .advice a {
+            color: #212529;
+            text-decoration: none;
+        }
+        .advice a:hover {
+            text-decoration: underline;
+        }
+        .advice-klasyczne { background-color: #e9f7ff; }
+        .advice-poziome { background-color: #e6ffe6; }
+        .advice-latwe { background-color: #ffe6e6; }
+        .advice-samonosny { background-color: #f0e6ff; }
+        .advice-wklad { background-color: #fff0e6; }
+        .advice-polkotapczan { background-color: #e6e6ff; }
+        @media (max-width: 600px) {
+            .frame-types {
+                grid-template-columns: 1fr;
+            }
+            select {
+                max-width: 100%;
+            }
+            .header img {
+                max-width: 180px;
+            }
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://kavon.pl/environment/cache/images/0_0_storefrontImages_850950af-218f-4130-8104-f59138e1d92a.jpeg" alt="Kavon Logo">
+            <h1>Dopasuj i znajdź idealny stelaż metalowy</h1>
+        </div>
+        
+        <div class="step">
+            <h2>Krok 1: Wybierz rozmiar stelaża</h2>
+            <label for="width">Szerokość (A):</label>
+            <select id="width">
+                <option value="">Wybierz szerokość</option>
+                <option value="80cm">80 cm</option>
+                <option value="90cm">90 cm</option>
+                <option value="100cm">100 cm</option>
+                <option value="120cm">120 cm</option>
+                <option value="140cm">140 cm</option>
+                <option value="160cm">160 cm</option>
+                <option value="180cm">180 cm</option>
+                <option value="200cm">200 cm</option>
+            </select>
+            <br>
+            <label for="length">Długość (B):</label>
+            <select id="length">
+                <option value="">Wybierz długość</option>
+                <option value="180cm">180 cm</option>
+                <option value="190cm">190 cm</option>
+                <option value="200cm">200 cm</option>
+                <option value="210cm">210 cm</option>
+                <option value="220cm">220 cm</option>
+            </select>
+        </div>
+
+        <div class="step" id="frameStep" style="display: none;">
+            <h2>Krok 2: Wybierz rodzaj stelaża</h2>
+            <div class="frame-types" id="frameTypes"></div>
+        </div>
+
+        <div class="confirmation" id="confirmation">
+            <p id="confirmationText"></p>
+            <button id="productButton">Przejdź do produktu</button>
+            <div id="advice" class="advice"></div>
+        </div>
+    </div>
+
+    <script>
+        const frames = [
+            {
+                name: "Klasyczne - od strony nóg",
+                image: "https://kavon.pl/environment/cache/images/500_500_productGfx_986/Rama-podwojna.webp",
+                advice: "<p>To klasyczny stelaż otwierany od strony nóg.<br>Zapewnia stabilność i łatwy montaż.<br>Idealny do tradycyjnych łóżek.<br><a href=\"https://kavon.pl/pl/c/BOX/9\">Zobacz więcej na Kavon.pl</a></p>",
+                adviceClass: "advice-klasyczne",
+                availability: {
+                    "80cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "90cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "100cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "120cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "140cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "160cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "180cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "200cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true }
+                },
+                links: {
+                    "80cm": {
+                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x180-BOX-22-listewki/344",
+                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x190-BOX-23-listewki/316",
+                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x200-BOX-24-listewki/139",
+                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x210-BOX-24-listewki/338",
+                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x220-BOX-25-listewek/317"
+                    },
+                    "90cm": {
+                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x180-BOX-22-listewki/345",
+                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x190-BOX-23-listewki/203",
+                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x200-BOX-24-listewki/4",
+                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x210-BOX-24-listewki/339",
+                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x220-BOX-25-listew/342"
+                    },
+                    "100cm": {
+                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x180-BOX-22-listewki/346",
+                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x190-BOX-23-listewki/312",
+                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x200-BOX-24-listewki/21",
+                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x210-BOX-24-listewki/340",
+                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x220-BOX-25-listew/341"
+                    },
+                    "120cm": {
+                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x180-BOX-44-listewki/347",
+                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x190-BOX-46-listewek/195",
+                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x200-BOX-48-listewek/117",
+                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x210-BOX-48-listewek/337",
+                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x220-BOX-50-listewek/192"
+                    },
+                    "140cm": {
+                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x180-BOX-44-listewki/348",
+                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x190-BOX-46-listewek/169",
+                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x200-BOX-48-listewek/118",
+                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x210-BOX-48-listewek/160",
+                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x220-BOX-50-listewek/164"
+                    },
+                    "160cm": {
+                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x180-BOX-44-listewki/349",
+                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x190-BOX-46-listewek/170",
+                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x200-BOX-48-listewek/119",
+                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x210-BOX-48-listewek/161",
+                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x220-BOX-50-listewek/165"
+                    },
+                    "180cm": {
+                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x180-BOX-44-listewek/350",
+                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x190-BOX-46-listewek/171",
+                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x200-BOX-48-listewek/120",
+                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x210-BOX-48-listewek/162",
+                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x220-BOX-50-listewek/166"
+                    },
+                    "200cm": {
+                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-200x180-BOX-44-listewek/351",
+                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-200x190-BOX-46-listewek/336",
+                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-200x200-BOX-48-listewek/121",
+                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-200x210-BOX-48-listewek/163",
+                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-200x220-BOX-50-listewek/167"
+                    }
+                }
+            },
+            {
+                name: "Poziome - od boku łóżka",
+                image: "https://kavon.pl/environment/cache/images/500_500_productGfx_1005/Rama-podwojna-pozioma.webp",
+                advice: "<p>Stelaż otwierany od boku łóżka.<br>Zapewnia wygodę dostępu i nowoczesny design.<br>Idealny do łóżek z bocznym otwieraniem.<br><a href=\"https://kavon.pl/pl/c/BOCZNY/10\">Zobacz więcej na Kavon.pl</a></p>",
+                adviceClass: "advice-poziome",
+                availability: {
+                    "80cm": { "180cm": false, "190cm": false, "200cm": true, "210cm": false, "220cm": false },
+                    "90cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "100cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "120cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "140cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "160cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "180cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "200cm": { "180cm": false, "190cm": false, "200cm": false, "210cm": false, "220cm": false }
+                },
+                links: {
+                    "80cm": {
+                        "180cm": "#",
+                        "190cm": "#",
+                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x200-BOCZNY-24-listewki/335",
+                        "210cm": "#",
+                        "220cm": "#"
+                    },
+                    "90cm": {
+                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x180-BOCZNY-22-listewki/352",
+                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x190-BOCZNY-23-listewki/317",
+                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x200-BOCZNY-24-listewki/114",
+                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x210-BOCZNY-24-listewki/318",
+                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x220-BOCZNY-25-listewek/319"
+                    },
+                    "100cm": {
+                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x180-BOCZNY-22-listewki/353",
+                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x190-BOCZNY-23-listewki/320",
+                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x200-BOCZNY-24-listewki/115",
+                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x210-BOCZNY-24-listewki/321",
+                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x220-BOCZNY-25-listewek/322"
+                    },
+                    "120cm": {
+                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x180-BOCZNY-44-listewki/354",
+                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x190-BOCZNY-46-listewek/323",
+                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x200-BOCZNY-48-listewek/122",
+                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x210-BOCZNY-48-listewek/324",
+                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x220-BOCZNY-50-listewek/325"
+                    },
+                    "140cm": {
+                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x180-BOCZNY-44-listewki/355",
+                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x190-BOCZNY-46-listewek/326",
+                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x200-BOCZNY-48-listewek/123",
+                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x210-BOCZNY-48-listewek/327",
+                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x220-BOCZNY-50-listewek/328"
+                    },
+                    "160cm": {
+                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x180-BOCZNY-44-listewki/356",
+                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x190-BOCZNY-46-listewek/329",
+                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x200-BOCZNY-48-listewek/124",
+                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x210-BOCZNY-48-listewek/330",
+                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x220-BOCZNY-50-listewek/331"
+                    },
+                    "180cm": {
+                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x180-BOCZNY-44-listewki/357",
+                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x190-BOCZNY-46-listewek/332",
+                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x200-BOCZNY-48-listewek/125",
+                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x210-BOCZNY-48-listewek/333",
+                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x220-BOCZNY-50-listewek/334"
+                    },
+                    "200cm": {
+                        "180cm": "#",
+                        "190cm": "#",
+                        "200cm": "#",
+                        "210cm": "#",
+                        "220cm": "#"
+                    }
+                }
+            },
+            {
+                name: "Klasyczne z funkcją łatwego ścielenia",
+                image: "https://kavon.pl/environment/cache/images/500_500_productGfx_1239/Crane-ze-skrzynia.webp",
+                advice: "<p>Stelaż z funkcją łatwego ścielenia.<br>Ułatwia codzienne użytkowanie.<br>Praktyczny dla wygodnych rozwiązań.<br><a href=\"https://kavon.pl/pl/c/CRANE/11\">Zobacz więcej na Kavon.pl</a></p>",
+                adviceClass: "advice-latwe",
+                availability: {
+                    "80cm": { "180cm": false, "190cm": false, "200cm": false, "210cm": false, "220cm": false },
+                    "90cm": { "180cm": false, "190cm": false, "200cm": false, "210cm": false, "220cm": false },
+                    "100cm": { "180cm": false, "190cm": false, "200cm": false, "210cm": false, "220cm": false },
+                    "120cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "140cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "160cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "180cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "200cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true }
+                },
+                links: {
+                    "80cm": {
+                        "180cm": "#",
+                        "190cm": "#",
+                        "200cm": "#",
+                        "210cm": "#",
+                        "220cm": "#"
+                    },
+                    "90cm": {
+                        "180cm": "#",
+                        "190cm": "#",
+                        "200cm": "#",
+                        "210cm": "#",
+                        "220cm": "#"
+                    },
+                    "100cm": {
+                        "180cm": "#",
+                        "190cm": "#",
+                        "200cm": "#",
+                        "210cm": "#",
+                        "220cm": "#"
+                    },
+                    "120cm": {
+                        "180cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-120x200-48-listewek-latwe-scielenie/174",
+                        "190cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-120x200-48-listewek-latwe-scielenie/174",
+                        "200cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-120x200-48-listewek-latwe-scielenie/174",
+                        "210cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-120x200-48-listewek-latwe-scielenie/174",
+                        "220cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-120x200-48-listewek-latwe-scielenie/174"
+                    },
+                    "140cm": {
+                        "180cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-140x200-48-listewek-latwe-scielenie/175",
+                        "190cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-140x200-48-listewek-latwe-scielenie/175",
+                        "200cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-140x200-48-listewek-latwe-scielenie/175",
+                        "210cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-140x200-48-listewek-latwe-scielenie/175",
+                        "220cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-140x200-48-listewek-latwe-scielenie/175"
+                    },
+                    "160cm": {
+                        "180cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-160x200-48-listewek-latwe-scielenie/176",
+                        "190cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-160x200-48-listewek-latwe-scielenie/176",
+                        "200cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-160x200-48-listewek-latwe-scielenie/176",
+                        "210cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-160x200-48-listewek-latwe-scielenie/176",
+                        "220cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-160x200-48-listewek-latwe-scielenie/176"
+                    },
+                    "180cm": {
+                        "180cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-180x200-48-listewek-latwe-scielenie/177",
+                        "190cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-180x200-48-listewek-latwe-scielenie/177",
+                        "200cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-180x200-48-listewek-latwe-scielenie/177",
+                        "210cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-180x200-48-listewek-latwe-scielenie/177",
+                        "220cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-180x200-48-listewek-latwe-scielenie/177"
+                    },
+                    "200cm": {
+                        "180cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-200x200-48-listewek-latwe-scielenie/178",
+                        "190cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-200x200-48-listewek-latwe-scielenie/178",
+                        "200cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-200x200-48-listewek-latwe-scielenie/178",
+                        "210cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-200x200-48-listewek-latwe-scielenie/178",
+                        "220cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-200x200-48-listewek-latwe-scielenie/178"
+                    }
+                }
+            },
+            {
+                name: "Stelaż samonośny - hotelowy",
+                image: "https://kavon.pl/environment/cache/images/500_500_productGfx_1349/ko-hotelowe-podwojne_2.webp",
+                advice: "<p>Samonośny stelaż hotelowy.<br>Solidna konstrukcja dla intensywnych zastosowań.<br>Idealny do hoteli i codziennego użytku.<br><a href=\"https://kavon.pl/pl/c/SAMONOSNY/12\">Zobacz więcej na Kavon.pl</a></p>",
+                adviceClass: "advice-samonosny",
+                availability: {
+                    "80cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "90cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "100cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "120cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "140cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "160cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "180cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "200cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true }
+                },
+                links: {
+                    "80cm": {
+                        "180cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-80x200-24-listewki-hotelowy/205",
+                        "190cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-80x200-24-listewki-hotelowy/205",
+                        "200cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-80x200-24-listewki-hotelowy/205",
+                        "210cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-80x200-24-listewki-hotelowy/205",
+                        "220cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-80x200-24-listewki-hotelowy/205"
+                    },
+                    "90cm": {
+                        "180cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-90x200-24-listewki-hotelowy/206",
+                        "190cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-90x200-24-listewki-hotelowy/206",
+                        "200cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-90x200-24-listewki-hotelowy/206",
+                        "210cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-90x200-24-listewki-hotelowy/206",
+                        "220cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-90x200-24-listewki-hotelowy/206"
+                    },
+                    "100cm": {
+                        "180cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-100x200-24-listewki-hotelowy/207",
+                        "190cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-100x200-24-listewki-hotelowy/207",
+                        "200cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-100x200-24-listewki-hotelowy/207",
+                        "210cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-100x200-24-listewki-hotelowy/207",
+                        "220cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-100x200-24-listewki-hotelowy/207"
+                    },
+                    "120cm": {
+                        "180cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-120x200-48-listewek-hotelowy/208",
+                        "190cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-120x200-48-listewek-hotelowy/208",
+                        "200cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-120x200-48-listewek-hotelowy/208",
+                        "210cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-120x200-48-listewek-hotelowy/208",
+                        "220cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-120x200-48-listewek-hotelowy/208"
+                    },
+                    "140cm": {
+                        "180cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-140x200-48-listewek-hotelowy/209",
+                        "190cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-140x200-48-listewek-hotelowy/209",
+                        "200cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-140x200-48-listewek-hotelowy/209",
+                        "210cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-140x200-48-listewek-hotelowy/209",
+                        "220cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-140x200-48-listewek-hotelowy/209"
+                    },
+                    "160cm": {
+                        "180cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-160x200-48-listewek-hotelowy/210",
+                        "190cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-160x200-48-listewek-hotelowy/210",
+                        "200cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-160x200-48-listewek-hotelowy/210",
+                        "210cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-160x200-48-listewek-hotelowy/210",
+                        "220cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-160x200-48-listewek-hotelowy/210"
+                    },
+                    "180cm": {
+                        "180cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-180x200-48-listewek-hotelowy/211",
+                        "190cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-180x200-48-listewek-hotelowy/211",
+                        "200cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-180x200-48-listewek-hotelowy/211",
+                        "210cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-180x200-48-listewek-hotelowy/211",
+                        "220cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-180x200-48-listewek-hotelowy/211"
+                    },
+                    "200cm": {
+                        "180cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-200x200-48-listewek-hotelowy/212",
+                        "190cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-200x200-48-listewek-hotelowy/212",
+                        "200cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-200x200-48-listewek-hotelowy/212",
+                        "210cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-200x200-48-listewek-hotelowy/212",
+                        "220cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-200x200-48-listewek-hotelowy/212"
+                    }
+                }
+            },
+            {
+                name: "Wkład do łóżka bez mechanizmów",
+                image: "https://kavon.pl/environment/cache/images/500_500_productGfx_1059/rama_podwojna_wklad.webp",
+                advice: "<p>Prosty wkład do łóżka bez mechanizmów.<br>Minimalistyczny i łatwy w montażu.<br>Idealny do podstawowych konstrukcji.<br><a href=\"https://kavon.pl/pl/c/WKLAD/13\">Zobacz więcej na Kavon.pl</a></p>",
+                adviceClass: "advice-wklad",
+                availability: {
+                    "80cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "90cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "100cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "120cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "140cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "160cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "180cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
+                    "200cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true }
+                },
+                links: {
+                    "80cm": {
+                        "180cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-80x200-24-listewki/221",
+                        "190cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-80x200-24-listewki/221",
+                        "200cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-80x200-24-listewki/221",
+                        "210cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-80x200-24-listewki/221",
+                        "220cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-80x200-24-listewki/221"
+                    },
+                    "90cm": {
+                        "180cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-90x200-24-listewki/126",
+                        "190cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-90x200-24-listewki/126",
+                        "200cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-90x200-24-listewki/126",
+                        "210cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-90x200-24-listewki/126",
+                        "220cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-90x200-24-listewki/126"
+                    },
+                    "100cm": {
+                        "180cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-100x200-24-listewki/127",
+                        "190cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-100x200-24-listewki/127",
+                        "200cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-100x200-24-listewki/127",
+                        "210cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-100x200-24-listewki/127",
+                        "220cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-100x200-24-listewki/127"
+                    },
+                    "120cm": {
+                        "180cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-120x200-48-listewek/128",
+                        "190cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-120x200-48-listewek/128",
+                        "200cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-120x200-48-listewek/128",
+                        "210cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-120x200-48-listewek/128",
+                        "220cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-120x200-48-listewek/128"
+                    },
+                    "140cm": {
+                        "180cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-140x200-48-listewek/129",
+                        "190cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-140x200-48-listewek/129",
+                        "200cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-140x200-48-listewek/129",
+                        "210cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-140x200-48-listewek/129",
+                        "220cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-140x200-48-listewek/129"
+                    },
+                    "160cm": {
+                        "180cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-160x200-48-listewek/130",
+                        "190cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-160x200-48-listewek/130",
+                        "200cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-160x200-48-listewek/130",
+                        "210cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-160x200-48-listewek/130",
+                        "220cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-160x200-48-listewek/130"
+                    },
+                    "180cm": {
+                        "180cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-180x200-48-listewek/131",
+                        "190cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-180x200-48-listewek/131",
+                        "200cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-180x200-48-listewek/131",
+                        "210cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-180x200-48-listewek/131",
+                        "220cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-180x200-48-listewek/131"
+                    },
+                    "200cm": {
+                        "180cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-200x200-48-listewek/132",
+                        "190cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-200x200-48-listewek/132",
+                        "200cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-200x200-48-listewek/132",
+                        "210cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-200x200-48-listewek/132",
+                        "220cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-200x200-48-listewek/132"
+                    }
+                }
+            },
+            {
+                name: "Mechanizmy do półkotapczanów",
+                image: "https://kavon.pl/environment/cache/images/0_0_productGfx_1372/podwojny_pionowy_miniaturka.webp",
+                advice: "<p>Mechanizmy do półkotapczanów.<br>Oszczędza przestrzeń w małych pomieszczeniach.<br>Specjalistyczne rozwiązanie do składanych łóżek.<br><a href=\"https://kavon.pl/pl/c/POLKOTAPCZAN/14\">Zobacz więcej na Kavon.pl</a></p>",
+                adviceClass: "advice-polkotapczan",
+                availability: {
+                    "80cm": { "180cm": false, "190cm": false, "200cm": false, "210cm": false, "220cm": false },
+                    "90cm": { "180cm": false, "190cm": false, "200cm": true, "210cm": false, "220cm": false },
+                    "100cm": { "180cm": false, "190cm": false, "200cm": false, "210cm": false, "220cm": false },
+                    "120cm": { "180cm": false, "190cm": false, "200cm": true, "210cm": false, "220cm": false },
+                    "140cm": { "180cm": false, "190cm": false, "200cm": true, "210cm": false, "220cm": false },
+                    "160cm": { "180cm": false, "190cm": false, "200cm": true, "210cm": false, "220cm": false },
+                    "180cm": { "180cm": false, "190cm": false, "200cm": false, "210cm": false, "220cm": false },
+                    "200cm": { "180cm": false, "190cm": false, "200cm": false, "210cm": false, "220cm": false }
+                },
+                links: {
+                    "80cm": {
+                        "180cm": "#",
+                        "190cm": "#",
+                        "200cm": "#",
+                        "210cm": "#",
+                        "220cm": "#"
+                    },
+                    "90cm": {
+                        "180cm": "#",
+                        "190cm": "#",
+                        "200cm": "https://kavon.pl/pl/p/Mechanizm-do-polkotapczanu-90x200cm-PIONOWY-stelaz-metalowy-20-listewek/213",
+                        "210cm": "#",
+                        "220cm": "#"
+                    },
+                    "100cm": {
+                        "180cm": "#",
+                        "190cm": "#",
+                        "200cm": "#",
+                        "210cm": "#",
+                        "220cm": "#"
+                    },
+                    "120cm": {
+                        "180cm": "#",
+                        "190cm": "#",
+                        "200cm": "https://kavon.pl/pl/p/Mechanizm-do-polkotapczanu-120x200cm-PIONOWY-stelaz-metalowy-40-listewek/214",
+                        "210cm": "#",
+                        "220cm": "#"
+                    },
+                    "140cm": {
+                        "180cm": "#",
+                        "190cm": "#",
+                        "200cm": "https://kavon.pl/pl/p/Mechanizm-do-polkotapczanu-140x200cm-PIONOWY-stelaz-metalowy-40-listewek/215",
+                        "210cm": "#",
+                        "220cm": "#"
+                    },
+                    "160cm": {
+                        "180cm": "#",
+                        "190cm": "#",
+                        "200cm": "https://kavon.pl/pl/p/Mechanizm-do-polkotapczanu-160x200cm-PIONOWY-stelaz-metalowy-40-listewek/219",
+                        "210cm": "#",
+                        "220cm": "#"
+                    },
+                    "180cm": {
+                        "180cm": "#",
+                        "190cm": "#",
+                        "200cm": "#",
+                        "210cm": "#",
+                        "220cm": "#"
+                    },
+                    "200cm": {
+                        "180cm": "#",
+                        "190cm": "#",
+                        "200cm": "#",
+                        "210cm": "#",
+                        "220cm": "#"
+                    }
+                }
+            }
+        ];
+
+        const widthSelect = document.getElementById('width');
+        const lengthSelect = document.getElementById('length');
+        const frameStep = document.getElementById('frameStep');
+        const frameTypes = document.getElementById('frameTypes');
+        const confirmation = document.getElementById('confirmation');
+        const confirmationText = document.getElementById('confirmationText');
+        const productButton = document.getElementById('productButton');
+        const advice = document.getElementById('advice');
+
+        let selectedFrame = null;
+
+        function updateFrameTypes() {
+            if (widthSelect.value && lengthSelect.value) {
+                frameStep.style.display = 'block';
+                frameTypes.innerHTML = '';
+                frames.forEach(frame => {
+                    if (frame.availability[widthSelect.value][lengthSelect.value]) {
+                        const card = document.createElement('div');
+                        card.className = 'frame-card';
+                        card.innerHTML = `
+                            <img src="${frame.image}" alt="${frame.name}">
+                            <h3>${frame.name}</h3>
+                        `;
+                        card.addEventListener('click', () => {
+                            document.querySelectorAll('.frame-card').forEach(c => c.classList.remove('selected'));
+                            card.classList.add('selected');
+                            selectedFrame = frame;
+                            updateConfirmation();
+                        });
+                        frameTypes.appendChild(card);
+                    }
+                });
+            } else {
+                frameStep.style.display = 'none';
+                confirmation.style.display = 'none';
+            }
+        }
+
+        function updateConfirmation() {
+            if (widthSelect.value && lengthSelect.value && selectedFrame) {
+                confirmation.style.display = 'block';
+                confirmationText.textContent = `Wybrano stelaż: ${selectedFrame.name} (${widthSelect.value} x ${lengthSelect.value})`;
+productButton.onclick = () => {
+    window.open(selectedFrame.links[widthSelect.value][lengthSelect.value], '_blank');
+};
+                advice.innerHTML = selectedFrame.advice;
+                advice.className = `advice ${selectedFrame.adviceClass}`;
+            } else {
+                confirmation.style.display = 'none';
+            }
+        }
+
+        widthSelect.addEventListener('change', () => {
+            selectedFrame = null;
+            updateFrameTypes();
+        });
+        lengthSelect.addEventListener('change', () => {
+            selectedFrame = null;
+            updateFrameTypes();
+        });
+    </script>
+</body>
+</html>
