@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konfigurator Stelaży Kavon</title>
-    <meta name="description" content="Konfigurator stelaży metalowych Kavon — dobierz rozmiar i typ w 2 krokach.">
+    <title id="page-title">Konfigurator Stelaży Kavon</title>
+    <meta name="description" id="page-desc" content="Konfigurator stelaży metalowych Kavon — dobierz rozmiar i typ w 2 krokach.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -446,19 +446,19 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="https://kavon.pl/environment/cache/images/0_0_storefrontImages_8666453f-a247-4118-9072-fb2ed906bef4.jpeg" alt="Kavon Logo">
+            <img id="hdr-logo" src="https://kavon.pl/environment/cache/images/0_0_storefrontImages_8666453f-a247-4118-9072-fb2ed906bef4.jpeg" alt="Kavon Logo">
             <div>
-                <span class="header-eyebrow">Konfigurator · 2 kroki</span>
-                <h1>Dopasuj i znajdź idealny stelaż metalowy</h1>
+                <span id="hdr-eyebrow" class="header-eyebrow">Konfigurator · 2 kroki</span>
+                <h1 id="hdr-title">Dopasuj i znajdź idealny stelaż metalowy</h1>
             </div>
-            <span class="header-badge">Kavon.pl</span>
+            <span id="hdr-badge" class="header-badge">Kavon.pl</span>
         </div>
 
         <div class="step">
-            <h2 data-step="01">Krok 1: Wybierz rozmiar stelaża</h2>
+            <h2 id="step1-h2" data-step="01">Krok 1: Wybierz rozmiar stelaża</h2>
             <div class="size-grid">
                 <div>
-                    <label for="width">Szerokość (A):</label>
+                    <label id="lbl-width" for="width">Szerokość (A):</label>
                     <select id="width">
                         <option value="">Wybierz szerokość</option>
                         <option value="80cm">80 cm</option>
@@ -473,7 +473,7 @@
                 </div>
                 <br>
                 <div>
-                    <label for="length">Długość (B):</label>
+                    <label id="lbl-length" for="length">Długość (B):</label>
                     <select id="length">
                         <option value="">Wybierz długość</option>
                         <option value="180cm">180 cm</option>
@@ -487,7 +487,7 @@
         </div>
 
         <div class="step" id="frameStep" style="display: none;">
-            <h2 data-step="02">Krok 2: Wybierz rodzaj stelaża</h2>
+            <h2 id="step2-h2" data-step="02">Krok 2: Wybierz rodzaj stelaża</h2>
             <div class="frame-types" id="frameTypes"></div>
         </div>
 
@@ -500,455 +500,308 @@
     </div>
 
     <script>
-        const frames = [
-            {
-                name: "Klasyczne - od strony nóg",
-                image: "https://kavon.pl/environment/cache/images/688_688_productGfx_1703/3.webp",
-                advice: "<p>To klasyczny stelaż otwierany od strony nóg.<br>Zapewnia stabilność i łatwy montaż.<br>Idealny do tradycyjnych łóżek.<br><a href=\"https://kavon.pl/pl/c/BOX/9\">Zobacz więcej na Kavon.pl</a></p>",
-                adviceClass: "advice-klasyczne",
-                availability: {
-                    "80cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "90cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "100cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "120cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "140cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "160cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "180cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "200cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true }
-                },
-                links: {
-                    "80cm": {
-                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x180-BOX-22-listewki/344",
-                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x190-BOX-23-listewki/316",
-                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x200-BOX-24-listewki/139",
-                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x210-BOX-24-listewki/338",
-                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x220-BOX-25-listewek/317"
-                    },
-                    "90cm": {
-                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x180-BOX-22-listewki/345",
-                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x190-BOX-23-listewki/203",
-                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x200-BOX-24-listewki/4",
-                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x210-BOX-24-listewki/339",
-                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x220-BOX-25-listew/342"
-                    },
-                    "100cm": {
-                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x180-BOX-22-listewki/346",
-                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x190-BOX-23-listewki/312",
-                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x200-BOX-24-listewki/21",
-                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x210-BOX-24-listewki/340",
-                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x220-BOX-25-listew/341"
-                    },
-                    "120cm": {
-                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x180-BOX-44-listewki/347",
-                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x190-BOX-46-listewek/195",
-                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x200-BOX-48-listewek/117",
-                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x210-BOX-48-listewek/337",
-                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x220-BOX-50-listewek/192"
-                    },
-                    "140cm": {
-                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x180-BOX-44-listewki/348",
-                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x190-BOX-46-listewek/169",
-                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x200-BOX-48-listewek/118",
-                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x210-BOX-48-listewek/160",
-                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x220-BOX-50-listewek/164"
-                    },
-                    "160cm": {
-                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x180-BOX-44-listewki/349",
-                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x190-BOX-46-listewek/170",
-                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x200-BOX-48-listewek/119",
-                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x210-BOX-48-listewek/161",
-                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x220-BOX-50-listewek/165"
-                    },
-                    "180cm": {
-                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x180-BOX-44-listewek/350",
-                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x190-BOX-46-listewek/171",
-                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x200-BOX-48-listewek/120",
-                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x210-BOX-48-listewek/162",
-                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x220-BOX-50-listewek/166"
-                    },
-                    "200cm": {
-                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-200x180-BOX-44-listewek/351",
-                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-200x190-BOX-46-listewek/336",
-                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-200x200-BOX-48-listewek/121",
-                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-200x210-BOX-48-listewek/163",
-                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-200x220-BOX-50-listewek/167"
-                    }
-                }
-            },
-            {
-                name: "Poziome - od boku łóżka",
-                image: "https://kavon.pl/environment/cache/images/688_688_productGfx_1648/2.webp",
-                advice: "<p>Stelaż otwierany od boku łóżka.<br>Zapewnia wygodę dostępu i nowoczesny design.<br>Idealny do łóżek z bocznym otwieraniem.<br><a href=\"https://kavon.pl/pl/c/BOCZNY/10\">Zobacz więcej na Kavon.pl</a></p>",
-                adviceClass: "advice-poziome",
-                availability: {
-                    "80cm": { "180cm": false, "190cm": false, "200cm": true, "210cm": false, "220cm": false },
-                    "90cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "100cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "120cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "140cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "160cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "180cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "200cm": { "180cm": false, "190cm": false, "200cm": false, "210cm": false, "220cm": false }
-                },
-                links: {
-                    "80cm": {
-                        "180cm": "#",
-                        "190cm": "#",
-                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x200-BOCZNY-24-listewki/335",
-                        "210cm": "#",
-                        "220cm": "#"
-                    },
-                    "90cm": {
-                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x180-BOCZNY-22-listewki/352",
-                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x190-BOCZNY-23-listewki/317",
-                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x200-BOCZNY-24-listewki/114",
-                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x210-BOCZNY-24-listewki/318",
-                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x220-BOCZNY-25-listewek/319"
-                    },
-                    "100cm": {
-                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x180-BOCZNY-22-listewki/353",
-                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x190-BOCZNY-23-listewki/320",
-                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x200-BOCZNY-24-listewki/115",
-                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x210-BOCZNY-24-listewki/321",
-                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x220-BOCZNY-25-listewek/322"
-                    },
-                    "120cm": {
-                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x180-BOCZNY-44-listewki/354",
-                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x190-BOCZNY-46-listewek/323",
-                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x200-BOCZNY-48-listewek/122",
-                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x210-BOCZNY-48-listewek/324",
-                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x220-BOCZNY-50-listewek/325"
-                    },
-                    "140cm": {
-                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x180-BOCZNY-44-listewki/355",
-                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x190-BOCZNY-46-listewek/326",
-                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x200-BOCZNY-48-listewek/123",
-                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x210-BOCZNY-48-listewek/327",
-                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x220-BOCZNY-50-listewek/328"
-                    },
-                    "160cm": {
-                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x180-BOCZNY-44-listewki/356",
-                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x190-BOCZNY-46-listewek/329",
-                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x200-BOCZNY-48-listewek/124",
-                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x210-BOCZNY-48-listewek/330",
-                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x220-BOCZNY-50-listewek/331"
-                    },
-                    "180cm": {
-                        "180cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x180-BOCZNY-44-listewki/357",
-                        "190cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x190-BOCZNY-46-listewek/332",
-                        "200cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x200-BOCZNY-48-listewek/125",
-                        "210cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x210-BOCZNY-48-listewek/333",
-                        "220cm": "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x220-BOCZNY-50-listewek/334"
-                    },
-                    "200cm": {
-                        "180cm": "#",
-                        "190cm": "#",
-                        "200cm": "#",
-                        "210cm": "#",
-                        "220cm": "#"
-                    }
-                }
-            },
-            {
-                name: "Klasyczne z funkcją łatwego ścielenia",
-                image: "https://kavon.pl/environment/cache/images/500_500_productGfx_1239/Crane-ze-skrzynia.webp",
-                advice: "<p>Stelaż z funkcją łatwego ścielenia.<br>Ułatwia codzienne użytkowanie.<br>Praktyczny dla wygodnych rozwiązań.<br><a href=\"https://kavon.pl/pl/c/CRANE/11\">Zobacz więcej na Kavon.pl</a></p>",
-                adviceClass: "advice-latwe",
-                availability: {
-                    "80cm": { "180cm": false, "190cm": false, "200cm": false, "210cm": false, "220cm": false },
-                    "90cm": { "180cm": false, "190cm": false, "200cm": false, "210cm": false, "220cm": false },
-                    "100cm": { "180cm": false, "190cm": false, "200cm": false, "210cm": false, "220cm": false },
-                    "120cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "140cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "160cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "180cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "200cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true }
-                },
-                links: {
-                    "80cm": {
-                        "180cm": "#",
-                        "190cm": "#",
-                        "200cm": "#",
-                        "210cm": "#",
-                        "220cm": "#"
-                    },
-                    "90cm": {
-                        "180cm": "#",
-                        "190cm": "#",
-                        "200cm": "#",
-                        "210cm": "#",
-                        "220cm": "#"
-                    },
-                    "100cm": {
-                        "180cm": "#",
-                        "190cm": "#",
-                        "200cm": "#",
-                        "210cm": "#",
-                        "220cm": "#"
-                    },
-                    "120cm": {
-                        "180cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-120x200-48-listewek-latwe-scielenie/174",
-                        "190cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-120x200-48-listewek-latwe-scielenie/174",
-                        "200cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-120x200-48-listewek-latwe-scielenie/174",
-                        "210cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-120x200-48-listewek-latwe-scielenie/174",
-                        "220cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-120x200-48-listewek-latwe-scielenie/174"
-                    },
-                    "140cm": {
-                        "180cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-140x200-48-listewek-latwe-scielenie/175",
-                        "190cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-140x200-48-listewek-latwe-scielenie/175",
-                        "200cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-140x200-48-listewek-latwe-scielenie/175",
-                        "210cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-140x200-48-listewek-latwe-scielenie/175",
-                        "220cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-140x200-48-listewek-latwe-scielenie/175"
-                    },
-                    "160cm": {
-                        "180cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-160x200-48-listewek-latwe-scielenie/176",
-                        "190cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-160x200-48-listewek-latwe-scielenie/176",
-                        "200cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-160x200-48-listewek-latwe-scielenie/176",
-                        "210cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-160x200-48-listewek-latwe-scielenie/176",
-                        "220cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-160x200-48-listewek-latwe-scielenie/176"
-                    },
-                    "180cm": {
-                        "180cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-180x200-48-listewek-latwe-scielenie/177",
-                        "190cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-180x200-48-listewek-latwe-scielenie/177",
-                        "200cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-180x200-48-listewek-latwe-scielenie/177",
-                        "210cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-180x200-48-listewek-latwe-scielenie/177",
-                        "220cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-180x200-48-listewek-latwe-scielenie/177"
-                    },
-                    "200cm": {
-                        "180cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-200x200-48-listewek-latwe-scielenie/178",
-                        "190cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-200x200-48-listewek-latwe-scielenie/178",
-                        "200cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-200x200-48-listewek-latwe-scielenie/178",
-                        "210cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-200x200-48-listewek-latwe-scielenie/178",
-                        "220cm": "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-200x200-48-listewek-latwe-scielenie/178"
-                    }
-                }
-            },
-            {
-                name: "Stelaż samonośny - hotelowy",
-                image: "https://kavon.pl/environment/cache/images/688_688_productGfx_1686/Packshot-2b.webp",
-                advice: "<p>Samonośny stelaż hotelowy.<br>Solidna konstrukcja dla intensywnych zastosowań.<br>Idealny do hoteli i codziennego użytku.<br><a href=\"https://kavon.pl/pl/c/SAMONOSNY/12\">Zobacz więcej na Kavon.pl</a></p>",
-                adviceClass: "advice-samonosny",
-                availability: {
-                    "80cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "90cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "100cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "120cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "140cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "160cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "180cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "200cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true }
-                },
-                links: {
-                    "80cm": {
-                        "180cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-80x200-24-listewki-hotelowy/205",
-                        "190cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-80x200-24-listewki-hotelowy/205",
-                        "200cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-80x200-24-listewki-hotelowy/205",
-                        "210cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-80x200-24-listewki-hotelowy/205",
-                        "220cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-80x200-24-listewki-hotelowy/205"
-                    },
-                    "90cm": {
-                        "180cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-90x200-24-listewki-hotelowy/206",
-                        "190cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-90x200-24-listewki-hotelowy/206",
-                        "200cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-90x200-24-listewki-hotelowy/206",
-                        "210cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-90x200-24-listewki-hotelowy/206",
-                        "220cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-90x200-24-listewki-hotelowy/206"
-                    },
-                    "100cm": {
-                        "180cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-100x200-24-listewki-hotelowy/207",
-                        "190cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-100x200-24-listewki-hotelowy/207",
-                        "200cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-100x200-24-listewki-hotelowy/207",
-                        "210cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-100x200-24-listewki-hotelowy/207",
-                        "220cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-100x200-24-listewki-hotelowy/207"
-                    },
-                    "120cm": {
-                        "180cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-120x200-48-listewek-hotelowy/208",
-                        "190cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-120x200-48-listewek-hotelowy/208",
-                        "200cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-120x200-48-listewek-hotelowy/208",
-                        "210cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-120x200-48-listewek-hotelowy/208",
-                        "220cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-120x200-48-listewek-hotelowy/208"
-                    },
-                    "140cm": {
-                        "180cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-140x200-48-listewek-hotelowy/209",
-                        "190cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-140x200-48-listewek-hotelowy/209",
-                        "200cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-140x200-48-listewek-hotelowy/209",
-                        "210cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-140x200-48-listewek-hotelowy/209",
-                        "220cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-140x200-48-listewek-hotelowy/209"
-                    },
-                    "160cm": {
-                        "180cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-160x200-48-listewek-hotelowy/210",
-                        "190cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-160x200-48-listewek-hotelowy/210",
-                        "200cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-160x200-48-listewek-hotelowy/210",
-                        "210cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-160x200-48-listewek-hotelowy/210",
-                        "220cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-160x200-48-listewek-hotelowy/210"
-                    },
-                    "180cm": {
-                        "180cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-180x200-48-listewek-hotelowy/211",
-                        "190cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-180x200-48-listewek-hotelowy/211",
-                        "200cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-180x200-48-listewek-hotelowy/211",
-                        "210cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-180x200-48-listewek-hotelowy/211",
-                        "220cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-180x200-48-listewek-hotelowy/211"
-                    },
-                    "200cm": {
-                        "180cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-200x200-48-listewek-hotelowy/212",
-                        "190cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-200x200-48-listewek-hotelowy/212",
-                        "200cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-200x200-48-listewek-hotelowy/212",
-                        "210cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-200x200-48-listewek-hotelowy/212",
-                        "220cm": "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-200x200-48-listewek-hotelowy/212"
-                    }
-                }
-            },
-            {
-                name: "Wkład do łóżka bez mechanizmów",
-                image: "https://kavon.pl/environment/cache/images/688_688_productGfx_1707/Podwojny-1b_a.webp",
-                advice: "<p>Prosty wkład do łóżka bez mechanizmów.<br>Minimalistyczny i łatwy w montażu.<br>Idealny do podstawowych konstrukcji.<br><a href=\"https://kavon.pl/pl/c/WKLAD/13\">Zobacz więcej na Kavon.pl</a></p>",
-                adviceClass: "advice-wklad",
-                availability: {
-                    "80cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "90cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "100cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "120cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "140cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "160cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "180cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true },
-                    "200cm": { "180cm": true, "190cm": true, "200cm": true, "210cm": true, "220cm": true }
-                },
-                links: {
-                    "80cm": {
-                        "180cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-80x200-24-listewki/221",
-                        "190cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-80x200-24-listewki/221",
-                        "200cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-80x200-24-listewki/221",
-                        "210cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-80x200-24-listewki/221",
-                        "220cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-80x200-24-listewki/221"
-                    },
-                    "90cm": {
-                        "180cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-90x200-24-listewki/126",
-                        "190cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-90x200-24-listewki/126",
-                        "200cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-90x200-24-listewki/126",
-                        "210cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-90x200-24-listewki/126",
-                        "220cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-90x200-24-listewki/126"
-                    },
-                    "100cm": {
-                        "180cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-100x200-24-listewki/127",
-                        "190cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-100x200-24-listewki/127",
-                        "200cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-100x200-24-listewki/127",
-                        "210cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-100x200-24-listewki/127",
-                        "220cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-100x200-24-listewki/127"
-                    },
-                    "120cm": {
-                        "180cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-120x200-48-listewek/128",
-                        "190cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-120x200-48-listewek/128",
-                        "200cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-120x200-48-listewek/128",
-                        "210cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-120x200-48-listewek/128",
-                        "220cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-120x200-48-listewek/128"
-                    },
-                    "140cm": {
-                        "180cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-140x200-48-listewek/129",
-                        "190cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-140x200-48-listewek/129",
-                        "200cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-140x200-48-listewek/129",
-                        "210cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-140x200-48-listewek/129",
-                        "220cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-140x200-48-listewek/129"
-                    },
-                    "160cm": {
-                        "180cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-160x200-48-listewek/130",
-                        "190cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-160x200-48-listewek/130",
-                        "200cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-160x200-48-listewek/130",
-                        "210cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-160x200-48-listewek/130",
-                        "220cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-160x200-48-listewek/130"
-                    },
-                    "180cm": {
-                        "180cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-180x200-48-listewek/131",
-                        "190cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-180x200-48-listewek/131",
-                        "200cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-180x200-48-listewek/131",
-                        "210cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-180x200-48-listewek/131",
-                        "220cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-180x200-48-listewek/131"
-                    },
-                    "200cm": {
-                        "180cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-200x200-48-listewek/132",
-                        "190cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-200x200-48-listewek/132",
-                        "200cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-200x200-48-listewek/132",
-                        "210cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-200x200-48-listewek/132",
-                        "220cm": "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-200x200-48-listewek/132"
-                    }
-                }
-            },
-            {
-                name: "Mechanizmy do półkotapczanów",
-                image: "https://kavon.pl/environment/cache/images/0_0_productGfx_1372/podwojny_pionowy_miniaturka.webp",
-                advice: "<p>Mechanizmy do półkotapczanów.<br>Oszczędza przestrzeń w małych pomieszczeniach.<br>Specjalistyczne rozwiązanie do składanych łóżek.<br><a href=\"https://kavon.pl/pl/c/POLKOTAPCZAN/14\">Zobacz więcej na Kavon.pl</a></p>",
-                adviceClass: "advice-polkotapczan",
-                availability: {
-                    "80cm": { "180cm": false, "190cm": false, "200cm": false, "210cm": false, "220cm": false },
-                    "90cm": { "180cm": false, "190cm": false, "200cm": true, "210cm": false, "220cm": false },
-                    "100cm": { "180cm": false, "190cm": false, "200cm": false, "210cm": false, "220cm": false },
-                    "120cm": { "180cm": false, "190cm": false, "200cm": true, "210cm": false, "220cm": false },
-                    "140cm": { "180cm": false, "190cm": false, "200cm": true, "210cm": false, "220cm": false },
-                    "160cm": { "180cm": false, "190cm": false, "200cm": true, "210cm": false, "220cm": false },
-                    "180cm": { "180cm": false, "190cm": false, "200cm": false, "210cm": false, "220cm": false },
-                    "200cm": { "180cm": false, "190cm": false, "200cm": false, "210cm": false, "220cm": false }
-                },
-                links: {
-                    "80cm": {
-                        "180cm": "#",
-                        "190cm": "#",
-                        "200cm": "#",
-                        "210cm": "#",
-                        "220cm": "#"
-                    },
-                    "90cm": {
-                        "180cm": "#",
-                        "190cm": "#",
-                        "200cm": "https://kavon.pl/pl/p/Mechanizm-do-polkotapczanu-90x200cm-PIONOWY-stelaz-metalowy-20-listewek/213",
-                        "210cm": "#",
-                        "220cm": "#"
-                    },
-                    "100cm": {
-                        "180cm": "#",
-                        "190cm": "#",
-                        "200cm": "#",
-                        "210cm": "#",
-                        "220cm": "#"
-                    },
-                    "120cm": {
-                        "180cm": "#",
-                        "190cm": "#",
-                        "200cm": "https://kavon.pl/pl/p/Mechanizm-do-polkotapczanu-120x200cm-PIONOWY-stelaz-metalowy-40-listewek/214",
-                        "210cm": "#",
-                        "220cm": "#"
-                    },
-                    "140cm": {
-                        "180cm": "#",
-                        "190cm": "#",
-                        "200cm": "https://kavon.pl/pl/p/Mechanizm-do-polkotapczanu-140x200cm-PIONOWY-stelaz-metalowy-40-listewek/215",
-                        "210cm": "#",
-                        "220cm": "#"
-                    },
-                    "160cm": {
-                        "180cm": "#",
-                        "190cm": "#",
-                        "200cm": "https://kavon.pl/pl/p/Mechanizm-do-polkotapczanu-160x200cm-PIONOWY-stelaz-metalowy-40-listewek/219",
-                        "210cm": "#",
-                        "220cm": "#"
-                    },
-                    "180cm": {
-                        "180cm": "#",
-                        "190cm": "#",
-                        "200cm": "#",
-                        "210cm": "#",
-                        "220cm": "#"
-                    },
-                    "200cm": {
-                        "180cm": "#",
-                        "190cm": "#",
-                        "200cm": "#",
-                        "210cm": "#",
-                        "220cm": "#"
-                    }
-                }
-            }
-        ];
+    // ─── Wykrywanie domeny → język ────────────────────────────
+    const DOMAIN_LANG = {
+      'kavon.pl':           'pl', 'www.kavon.pl':           'pl',
+      'kavonpostele.cz':    'cs', 'www.kavonpostele.cz':    'cs',
+      'kavonbetten.de':     'de', 'www.kavonbetten.de':     'de',
+      'kavonlits.fr':       'fr', 'www.kavonlits.fr':       'fr',
+      'kavonbeds.com':      'en', 'www.kavonbeds.com':      'en',
+    };
+    const LANG = DOMAIN_LANG[window.location.hostname] || 'pl';
 
-        const widthSelect = document.getElementById('width');
-        const lengthSelect = document.getElementById('length');
+    // ─── Tłumaczenia UI ───────────────────────────────────────
+    const TR = {
+      pl: {
+        htmlLang:'pl', pageTitle:'Konfigurator Stelaży Kavon',
+        pageDesc:'Konfigurator stelaży metalowych Kavon — dobierz rozmiar i typ w 2 krokach.',
+        eyebrow:'Konfigurator · 2 kroki', badge:'Kavon.pl',
+        h1:'Dopasuj i znajdź idealny stelaż metalowy',
+        lblWidth:'Szerokość (A):', lblLength:'Długość (B):',
+        step1:'Krok 1: Wybierz rozmiar stelaża', step2:'Krok 2: Wybierz rodzaj stelaża',
+        optWidth:'Wybierz szerokość', optLength:'Wybierz długość',
+        btnGo:'Przejdź do produktu', selPfx:'Wybrano stelaż:',
+        logoHref:'https://kavon.pl',
+        frames:[
+          { id:'box',    name:'Klasyczne - od strony nóg',          advice:'To klasyczny stelaż otwierany od strony nóg.<br>Zapewnia stabilność i łatwy montaż.<br>Idealny do tradycyjnych łóżek.<br><a href="https://kavon.pl/pl/c/BOX/9">Zobacz więcej na Kavon.pl</a>' },
+          { id:'boczny', name:'Boczne - od strony boku',            advice:'Stelaż otwierany od boku łóżka.<br>Zapewnia wygodę dostępu i nowoczesny design.<br>Idealny do łóżek z bocznym otwieraniem.<br><a href="https://kavon.pl/pl/c/BOCZNY/10">Zobacz więcej na Kavon.pl</a>' },
+          { id:'crane',  name:'CRANE - łatwe ścielenie',            advice:'Stelaż z funkcją łatwego ścielenia.<br>Ułatwia codzienne użytkowanie.<br>Praktyczny dla wygodnych rozwiązań.<br><a href="https://kavon.pl/pl/c/CRANE/11">Zobacz więcej na Kavon.pl</a>' },
+          { id:'hotel',  name:'Samonosny - hotelowy',               advice:'Samonośny stelaż hotelowy.<br>Solidna konstrukcja dla intensywnych zastosowań.<br>Idealny do hoteli i codziennego użytku.<br><a href="https://kavon.pl/pl/c/SAMONOSNY/12">Zobacz więcej na Kavon.pl</a>' },
+          { id:'wklad',  name:'Wkład do łóżka',                     advice:'Prosty wkład do łóżka bez mechanizmów.<br>Minimalistyczny i łatwy w montażu.<br>Idealny do podstawowych konstrukcji.<br><a href="https://kavon.pl/pl/c/WKLAD/13">Zobacz więcej na Kavon.pl</a>' },
+          { id:'polk',   name:'Mechanizmy do półkotapczanów',       advice:'Mechanizmy do półkotapczanów.<br>Oszczędza przestrzeń w małych pomieszczeniach.<br>Specjalistyczne rozwiązanie do składanych łóżek.<br><a href="https://kavon.pl/pl/c/POLKOTAPCZAN/14">Zobacz więcej na Kavon.pl</a>' },
+        ],
+      },
+      cs: {
+        htmlLang:'cs', pageTitle:'Konfigurátor roštů Kavon',
+        pageDesc:'Konfigurátor kovových roštů Kavon — vyberte rozměr a typ ve 2 krocích.',
+        eyebrow:'Konfigurátor · 2 kroky', badge:'Kavonpostele.cz',
+        h1:'Najděte a vyberte ideální kovový rošt',
+        lblWidth:'Šířka (A):', lblLength:'Délka (B):',
+        step1:'Krok 1: Vyberte rozměr roštu', step2:'Krok 2: Vyberte typ roštu',
+        optWidth:'Vyberte šířku', optLength:'Vyberte délku',
+        btnGo:'Přejít na produkt', selPfx:'Vybráno:',
+        logoHref:'https://kavonpostele.cz',
+        frames:[
+          { id:'box',    name:'Výklopný přední (BOX)',               advice:'Klasický rošt otvíraný od strany noh.<br>Zajišťuje stabilitu a snadnou montáž.<br>Ideální pro tradiční postele.<br><a href="https://kavonpostele.cz">Více na Kavonpostele.cz</a>' },
+          { id:'boczny', name:'Výklopný boční',                      advice:'Rošt otvíraný zboku postele.<br>Pohodlný přístup a moderní design.<br>Ideální pro postele s bočním otvíráním.<br><a href="https://kavonpostele.cz">Více na Kavonpostele.cz</a>' },
+          { id:'crane',  name:'CRANE — snadné stlání',               advice:'Rošt s funkcí snadného stlání.<br>Usnadňuje každodenní používání.<br>Praktické řešení pro pohodlné postele.<br><a href="https://kavonpostele.cz">Více na Kavonpostele.cz</a>' },
+          { id:'hotel',  name:'Hotelový (samonosný)',                 advice:'Samonosný hotelový rošt.<br>Solidní konstrukce pro intenzivní použití.<br>Ideální pro hotely a každodenní provoz.<br><a href="https://kavonpostele.cz">Více na Kavonpostele.cz</a>' },
+          { id:'wklad',  name:'Vložka do postele',                    advice:'Jednoduchá vložka bez mechanismů.<br>Minimalistická a snadno montovatelná.<br>Ideální pro základní konstrukce.<br><a href="https://kavonpostele.cz">Více na Kavonpostele.cz</a>' },
+          { id:'polk',   name:'Mechanismy pro sklápěcí postele',      advice:'Mechanismy pro sklápěcí postele.<br>Šetří prostor v malých místnostech.<br>Specializované řešení.<br><a href="https://kavonpostele.cz">Více na Kavonpostele.cz</a>' },
+        ],
+      },
+      de: {
+        htmlLang:'de', pageTitle:'Kavon Lattenrost-Konfigurator',
+        pageDesc:'Kavon Metalllattenrost-Konfigurator — wählen Sie Größe und Typ in 2 Schritten.',
+        eyebrow:'Konfigurator · 2 Schritte', badge:'Kavonbetten.de',
+        h1:'Finden Sie Ihren idealen Metalllattenrost',
+        lblWidth:'Breite (A):', lblLength:'Länge (B):',
+        step1:'Schritt 1: Wählen Sie die Größe', step2:'Schritt 2: Wählen Sie den Typ',
+        optWidth:'Breite wählen', optLength:'Länge wählen',
+        btnGo:'Zum Produkt', selPfx:'Ausgewählt:',
+        logoHref:'https://kavonbetten.de',
+        frames:[
+          { id:'box',    name:'Aufklappbar vorne (BOX)',              advice:'Klassischer Lattenrost, öffnet von der Fußseite.<br>Stabil und einfach zu montieren.<br>Ideal für traditionelle Betten.<br><a href="https://kavonbetten.de">Mehr auf Kavonbetten.de</a>' },
+          { id:'boczny', name:'Seitlich aufklappbar',                 advice:'Lattenrost mit seitlicher Öffnung.<br>Bequemer Zugang und modernes Design.<br>Ideal für Betten mit seitlichem Öffnungsmechanismus.<br><a href="https://kavonbetten.de">Mehr auf Kavonbetten.de</a>' },
+          { id:'crane',  name:'CRANE — einfaches Bettenmachen',      advice:'Lattenrost mit Bettenma­chen-Funktion.<br>Erleichtert den täglichen Gebrauch.<br>Praktisch für komfortable Lösungen.<br><a href="https://kavonbetten.de">Mehr auf Kavonbetten.de</a>' },
+          { id:'hotel',  name:'Hotelbett (selbsttragend)',            advice:'Selbsttragender Hotellattenrost.<br>Robuste Konstruktion für intensiven Einsatz.<br>Ideal für Hotels und den täglichen Gebrauch.<br><a href="https://kavonbetten.de">Mehr auf Kavonbetten.de</a>' },
+          { id:'wklad',  name:'Betteinleger',                         advice:'Einfacher Betteinleger ohne Mechanismen.<br>Minimalistisch und leicht zu montieren.<br>Ideal für einfache Konstruktionen.<br><a href="https://kavonbetten.de">Mehr auf Kavonbetten.de</a>' },
+          { id:'polk',   name:'Mechanismen für Klappsofa-Betten',     advice:'Mechanismen für Klappsofa-Betten.<br>Platzsparend für kleine Räume.<br>Speziallösung für klappbare Betten.<br><a href="https://kavonbetten.de">Mehr auf Kavonbetten.de</a>' },
+        ],
+      },
+      fr: {
+        htmlLang:'fr', pageTitle:'Configurateur de sommiers Kavon',
+        pageDesc:'Configurateur de sommiers métalliques Kavon — choisissez la taille et le type en 2 étapes.',
+        eyebrow:'Configurateur · 2 étapes', badge:'Kavonlits.fr',
+        h1:'Trouvez votre sommier métallique idéal',
+        lblWidth:'Largeur (A) :', lblLength:'Longueur (B) :',
+        step1:'Étape 1 : Choisissez la taille', step2:'Étape 2 : Choisissez le type',
+        optWidth:'Choisir la largeur', optLength:'Choisir la longueur',
+        btnGo:'Aller au produit', selPfx:'Sélectionné :',
+        logoHref:'https://kavonlits.fr',
+        frames:[
+          { id:'box',    name:'Relevable avant (BOX)',                advice:'Sommier classique s\'ouvrant côté pied.<br>Stabilité et montage facile.<br>Idéal pour les lits traditionnels.<br><a href="https://kavonlits.fr">Voir plus sur Kavonlits.fr</a>' },
+          { id:'boczny', name:'Relevable latéral',                    advice:'Sommier s\'ouvrant sur le côté du lit.<br>Accès confortable et design moderne.<br>Idéal pour les lits à ouverture latérale.<br><a href="https://kavonlits.fr">Voir plus sur Kavonlits.fr</a>' },
+          { id:'crane',  name:'CRANE — literie facile',               advice:'Sommier avec fonction de literie facile.<br>Facilite l\'utilisation quotidienne.<br>Pratique pour un confort optimal.<br><a href="https://kavonlits.fr">Voir plus sur Kavonlits.fr</a>' },
+          { id:'hotel',  name:'Hôtelier (autoportant)',               advice:'Sommier hôtelier autoportant.<br>Construction robuste pour usage intensif.<br>Idéal pour les hôtels et l\'usage quotidien.<br><a href="https://kavonlits.fr">Voir plus sur Kavonlits.fr</a>' },
+          { id:'wklad',  name:'Insert pour lit',                      advice:'Simple insert sans mécanismes.<br>Minimaliste et facile à monter.<br>Idéal pour les constructions de base.<br><a href="https://kavonlits.fr">Voir plus sur Kavonlits.fr</a>' },
+          { id:'polk',   name:'Mécanismes pour canapés-lits',         advice:'Mécanismes pour canapés-lits.<br>Gain de place dans les petites pièces.<br>Solution spécialisée.<br><a href="https://kavonlits.fr">Voir plus sur Kavonlits.fr</a>' },
+        ],
+      },
+      en: {
+        htmlLang:'en', pageTitle:'Kavon Bed Frame Configurator',
+        pageDesc:'Kavon metal bed frame configurator — choose size and type in 2 steps.',
+        eyebrow:'Configurator · 2 steps', badge:'Kavonbeds.com',
+        h1:'Find your ideal metal bed frame',
+        lblWidth:'Width (A):', lblLength:'Length (B):',
+        step1:'Step 1: Choose bed size', step2:'Step 2: Choose frame type',
+        optWidth:'Select width', optLength:'Select length',
+        btnGo:'Go to product', selPfx:'Selected:',
+        logoHref:'https://kavonbeds.com',
+        frames:[
+          { id:'box',    name:'Front-lift (BOX)',                     advice:'Classic front-opening bed frame.<br>Stable and easy to assemble.<br>Ideal for traditional beds.<br><a href="https://kavonbeds.com">More at Kavonbeds.com</a>' },
+          { id:'boczny', name:'Side-lift',                            advice:'Side-opening bed frame.<br>Convenient access and modern design.<br>Ideal for beds with side-opening mechanism.<br><a href="https://kavonbeds.com">More at Kavonbeds.com</a>' },
+          { id:'crane',  name:'CRANE — easy bed making',              advice:'Bed frame with easy bed making function.<br>Simplifies daily use.<br>Practical for comfortable setups.<br><a href="https://kavonbeds.com">More at Kavonbeds.com</a>' },
+          { id:'hotel',  name:'Hotel frame (freestanding)',           advice:'Freestanding hotel bed frame.<br>Robust construction for intensive use.<br>Ideal for hotels and everyday use.<br><a href="https://kavonbeds.com">More at Kavonbeds.com</a>' },
+          { id:'wklad',  name:'Bed insert',                           advice:'Simple bed insert without mechanisms.<br>Minimalist and easy to install.<br>Ideal for basic bed frames.<br><a href="https://kavonbeds.com">More at Kavonbeds.com</a>' },
+          { id:'polk',   name:'Murphy bed mechanisms',                advice:'Mechanisms for Murphy / wall beds.<br>Space-saving in small rooms.<br>Specialized solution for folding beds.<br><a href="https://kavonbeds.com">More at Kavonbeds.com</a>' },
+        ],
+      },
+    };
+    const T = TR[LANG] || TR.pl;
+
+    // ─── Obrazki (wspólne dla wszystkich wersji) ──────────────
+    const FRAME_IMAGES = {
+      box:    'https://kavon.pl/environment/cache/images/688_688_productGfx_1703/3.webp',
+      boczny: 'https://kavon.pl/environment/cache/images/688_688_productGfx_1648/2.webp',
+      crane:  'https://kavon.pl/environment/cache/images/500_500_productGfx_1239/Crane-ze-skrzynia.webp',
+      hotel:  'https://kavon.pl/environment/cache/images/688_688_productGfx_1686/Packshot-2b.webp',
+      wklad:  'https://kavon.pl/environment/cache/images/688_688_productGfx_1707/Podwojny-1b_a.webp',
+      polk:   'https://kavon.pl/environment/cache/images/0_0_productGfx_1372/podwojny_pionowy_miniaturka.webp',
+    };
+
+    const FRAME_ADVICE_CLASS = {
+      box:'advice-klasyczne', boczny:'advice-poziome', crane:'advice-latwe',
+      hotel:'advice-samonosny', wklad:'advice-wklad', polk:'advice-polkotapczan',
+    };
+
+    // ─── URL produktów (ze wszystkich 5 domen) ────────────────
+    const PRODUCT_URLS = {
+      box: {
+        "100x180": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x180-BOX-22-listewki/346", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-100x180-box-22-lamel", de: "https://kavonbetten.de/aufklappbarer-metallbettrahmen-100x180-box-22-latten", en: "https://kavonbeds.com/lifting-metal-bed-frame-100x180-box-22-slats", fr: "https://kavonlits.fr/sommier-a-lattes-relevable-en-metal-100x180-box-22-lattes"},
+        "100x190": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x190-BOX-23-listewki/312", cs: "https://kavonpostele.cz/kovovy-vyklopny-rost-100x190-box-23-lamel", de: "https://kavonbetten.de/aufklappbarer-metall-lattenrost-100x190-box-23-leisten", en: "https://kavonbeds.com/metal-lifting-bed-frame-100x190-box-23-slats", fr: "https://kavonlits.fr/cadre-de-lit-relevable-metal-100x190-box-23-lattes"},
+        "100x200": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x200-BOX-24-listewki/21", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-100x200-box-24-lamel", de: "https://kavonbetten.de/hochklappbarer-metall-lattenrost-100x200-24-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-100x200-24-slats-box", fr: "https://kavonlits.fr/sommier-metallique-relevable-100x200-24-lattes-box"},
+        "100x210": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x210-BOX-24-listewki/340", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-100x210-box-24-lamel", de: "https://kavonbetten.de/metall-lattenrost-klappbar-100x210-box-24-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-100x210-box-24-slats", fr: "https://kavonlits.fr/sommier-relevable-en-metal-100x210-box-24-lattes"},
+        "100x220": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x220-BOX-25-listew/341", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-100x220-box-25-lamel", de: "https://kavonbetten.de/metall-lattenrost-100x220-hochklappbar-25-leisten-box", en: "https://kavonbeds.com/lifting-metal-bed-frame-100x220-box-25-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-100x220-box-25-lattes"},
+        "120x180": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x180-BOX-44-listewki/347", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-120x180-box-44-lamel", de: "https://kavonbetten.de/hochklappbarer-metall-lattenrost-120x180-box-44-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-120x180-box-44-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-120x180-box-44-lattes"},
+        "120x190": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x190-BOX-46-listewek/195", cs: "https://kavonpostele.cz/zvedaci-kovovy-rost-120x190-box-46-lamel", de: "https://kavonbetten.de/aufklappbarer-metall-lattenrost-120x190-box-46-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-120x190-box-46-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-120x190-box-46-lattes"},
+        "120x200": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x200-BOX-48-listewek/117", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-120x200-box-48-lamel", de: "https://kavonbetten.de/metall-lattenrost-120x200-aufklappbar-box-48-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-120x200-box-48-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-120x200-box-48-lattes"},
+        "120x210": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x210-BOX-48-listewek/337", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-120x210-box-48-lamel", de: "https://kavonbetten.de/metall-lattenrost-hochklappbar-120x210-box-48-leisten", en: "https://kavonbeds.com/lift-up-metal-bed-frame-120x210-box-48-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-120x210-box-48-lattes"},
+        "120x220": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x220-BOX-50-listewek/192", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-120x220-box-50-lamel", de: "https://kavonbetten.de/metall-lattenrost-120x220-box-50-leisten-hebbar", en: "https://kavonbeds.com/lifting-metal-bed-frame-120x220-box-50-slats", fr: "https://kavonlits.fr/sommier-relevable-metallique-120x220-box-50-lattes"},
+        "140x180": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x180-BOX-44-listewki/348", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-140x180-box-44-lamel", de: "https://kavonbetten.de/klappbarer-metall-lattenrost-140x180-box-44-leisten", en: "https://kavonbeds.com/metal-lifting-bed-frame-140x180-box-44-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-140x180-box-44-lattes"},
+        "140x190": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x190-BOX-46-listewek/169", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-140x190-box-46-lamel", de: "https://kavonbetten.de/metall-bettrahmen-140x190-box-klappbar-46-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-140x190-box-46-slats", fr: "https://kavonlits.fr/sommier-relevable-en-metal-140x190-box-46-lattes"},
+        "140x200": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x200-BOX-48-listewek/118", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-140x200-box-48-lamel", de: "https://kavonbetten.de/aufklappbarer-metall-lattenrost-140x200-box-48-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-140x200-box-48-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-140x200-box-48-lattes"},
+        "140x210": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x210-BOX-48-listewek/160", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-140x210-box-48-lamel", de: "https://kavonbetten.de/aufklappbarer-metall-lattenrost-140x210-box-48-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-140x210-box-48-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-140x210-box-48-lattes"},
+        "140x220": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x220-BOX-50-listewek/164", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-140x220-box-50-lamel", de: "https://kavonbetten.de/metall-lattenrost-140x220-box-50-leisten-klappbar", en: "https://kavonbeds.com/lifting-metal-bed-frame-140x220-box-50-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-140x220-box-50-lattes"},
+        "160x180": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x180-BOX-44-listewki/349", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-160x180-box-44-lamel", de: "https://kavonbetten.de/metall-lattenrost-160x180-hochklappbar-box-44-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-160x180-box-44-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-160x180-box-44-lattes"},
+        "160x190": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x190-BOX-46-listewek/170", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-160x190-box-46-lamel", de: "https://kavonbetten.de/metall-lattenrost-160x190-klappbar-46-leisten-box", en: "https://kavonbeds.com/lift-up-metal-bed-frame-160x190-box-46-slats", fr: "https://kavonlits.fr/sommier-metallique-relevable-160x190-box-46-lattes"},
+        "160x200": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x200-BOX-48-listewek/119", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-160x200-box-48-lamel", de: "https://kavonbetten.de/klappbarer-metall-lattenrost-160x200-box-48-leisten", en: "https://kavonbeds.com/lift-up-metal-bed-frame-160x200-box-48-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-160x200-box-48-lattes"},
+        "160x210": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x210-BOX-48-listewek/161", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-160x210-box-48-lamel", de: "https://kavonbetten.de/metall-lattenrost-160x210-box-48-leisten-aufklappbar", en: "https://kavonbeds.com/lifting-metal-bed-frame-160x210-box-48-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-160x210-box-48-lattes"},
+        "160x220": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x220-BOX-50-listewek/165", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-160x220-box-50-lati", de: "https://kavonbetten.de/metall-lattenrost-160x220-box-50-leisten-klappbar", en: "https://kavonbeds.com/lifting-metal-bed-frame-160x220-box-50-slats", fr: "https://kavonlits.fr/sommier-relevable-metallique-160x220-box-50-lattes"},
+        "180x180": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x180-BOX-44-listewek/350", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-180x180-box-44-lamel", de: "https://kavonbetten.de/hochklappbarer-metall-lattenrost-180x180-box-44-leisten", en: "https://kavonbeds.com/lift-up-metal-bed-frame-180x180-box-44-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-180x180-box-44-lattes"},
+        "180x190": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x190-BOX-46-listewek/171", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-180x190-box-46-lamel", de: "https://kavonbetten.de/aufklappbarer-metall-lattenrost-180x190-cm-box-46-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-180x190-46-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-180x190-46-lattes-box"},
+        "180x200": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x200-BOX-48-listewek/120", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-180x200-box-48-lamel", de: "https://kavonbetten.de/hochklappbarer-metall-lattenrost-180x200-box-48-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-180x200-box-48-slats", fr: "https://kavonlits.fr/sommier-metallique-relevable-180x200-box-48-lattes"},
+        "180x210": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x210-BOX-48-listewek/162", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-180x210-box-48-lamel", de: "https://kavonbetten.de/metall-lattenrost-180x210-box-48-leisten-hebemechanismus", en: "https://kavonbeds.com/lift-up-metal-bed-frame-180x210-box-48-slats", fr: "https://kavonlits.fr/sommier-relevable-metallique-180x210-box-48-lattes"},
+        "180x220": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x220-BOX-50-listewek/166", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-180x220-box-50-lamel", de: "https://kavonbetten.de/aufklappbarer-metall-lattenrost-180x220-box-50-leisten", en: "https://kavonbeds.com/metal-lifting-bed-frame-180x220-box-50-slats", fr: "https://kavonlits.fr/sommier-metal-relevable-180x220-box-50-lattes"},
+        "200x180": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-200x180-BOX-44-listewek/351", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-200x180-box-44-lamel", de: "https://kavonbetten.de/aufklappbarer-metall-lattenrost-200x180-box-44-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-200x180-box-44-slats", fr: "https://kavonlits.fr/sommier-metallique-relevable-200x180-box-44-lattes"},
+        "200x190": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-200x190-BOX-46-listewek/336", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-200x190-box-46-lamel", de: "https://kavonbetten.de/hochklappbarer-lattenrost-200x190-metall-box-46-leisten", en: "https://kavonbeds.com/metal-lifting-bed-frame-200x190-46-slats-box", fr: "https://kavonlits.fr/sommier-metal-relevable-200x190-46-lattes-box"},
+        "200x200": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-200x200-BOX-48-listewek/121", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-200x200-box-48-lamel", de: "https://kavonbetten.de/hochklappbarer-metall-lattenrost-200x200-box-48-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-200x200-box-48-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-200x200-box-48-lattes"},
+        "200x210": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-200x210-BOX-48-listewek/163", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-200x210-box-48-lamel", de: "https://kavonbetten.de/aufklappbarer-metall-lattenrost-200x210-48-leisten-box", en: "https://kavonbeds.com/lifting-metal-bed-frame-200x210-box-48-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-200x210-box-48-lattes"},
+        "200x220": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-200x220-BOX-50-listewek/167", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-200x220-box-50-lamel", de: "https://kavonbetten.de/klappbarer-metall-lattenrost-200x220-box-50-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-200x220-box-50-slats", fr: "https://kavonlits.fr/sommier-relevable-metallique-200x220-box-50-lattes"},
+        "80x180": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x180-BOX-22-listewki/344", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-80x180-box-22-lamel", de: "https://kavonbetten.de/metall-lattenrost-80x180-box-22-leisten-aufklappbar", en: "https://kavonbeds.com/80x180-lift-up-metal-bed-frame-box-22-slats", fr: "https://kavonlits.fr/cadre-de-lit-relevable-en-metal-80x180-box-22-lattes"},
+        "80x190": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x190-BOX-23-listewki/316", cs: "https://kavonpostele.cz/vyklapeci-kovovy-rost-80x190-box-23-lamel", de: "https://kavonbetten.de/aufklappbarer-metall-lattenrost-80x190-box-23-leisten", en: "https://kavonbeds.com/metal-lifting-bed-frame-80x190-box-23-slats", fr: "https://kavonlits.fr/sommier-a-lattes-relevable-metal-80x190-box-23-lattes"},
+        "80x200": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x200-BOX-24-listewki/139", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-80x200-24-lamel", de: "https://kavonbetten.de/metall-lattenrost-80x200-hochklappbar-24-leisten-box", en: "https://kavonbeds.com/lifting-metal-bed-frame-80x200-24-slats-box", fr: "https://kavonlits.fr/sommier-relevable-metal-80x200-24-lattes-box"},
+        "80x210": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x210-BOX-24-listewki/338", cs: "https://kavonpostele.cz/zvedaci-kovovy-rost-80x210-box-24-lamel", de: "https://kavonbetten.de/aufklappbarer-metall-lattenrost-80x210-box-24-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-80x210-box-24-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-80x210-box-24-lattes"},
+        "80x220": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x220-BOX-25-listewek/317", cs: "https://kavonpostele.cz/zvedaci-kovovy-rost-90x190-bocni-23-lamel", de: "https://kavonbetten.de/lattenrost-90x190-seitlich-klappbar-metallrahmen-23-leisten", en: "https://kavonbeds.com/metal-lift-up-bed-frame-90x190-side-opening-23-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-90x190-lateral-23-lattes"},
+        "90x180": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x180-BOX-22-listewki/345", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-90x180-box-22-lamel", de: "https://kavonbetten.de/klappbarer-metalllattenrost-90x180-box-22-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-90x180-box-22-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-90x180-box-22-lattes"},
+        "90x190": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x190-BOX-23-listewki/203", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-90x190-box-23-lamel", de: "https://kavonbetten.de/hochklappbarer-metall-lattenrost-90x190-box-23-leisten", en: "https://kavonbeds.com/90x190-box-lift-up-metal-bed-frame-23-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-90x190-box-23-lattes"},
+        "90x200": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x200-BOX-24-listewki/4", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-90x200-box-24-lamel", de: "https://kavonbetten.de/hochklappbarer-metall-lattenrost-90x200-24-leisten-box", en: "https://kavonbeds.com/liftable-metal-bed-frame-90x200-box-24-slats", fr: "https://kavonlits.fr/sommier-metallique-relevable-90x200-24-lattes-box"},
+        "90x210": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x210-BOX-24-listewki/339", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-90x210-box-24-lamel", de: "https://kavonbetten.de/metall-lattenrost-90x210-aufklappbar-box-24-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-90x210-box-24-slats", fr: "https://kavonlits.fr/sommier-metallique-relevable-90x210-box-24-lattes"},
+        "90x220": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x220-BOX-25-listew/342", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-90x220-box-25-lamel", de: "https://kavonbetten.de/hochklappbarer-metall-lattenrost-90x220-box-25-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-90x220-box-25-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-90x220-box-25-lattes"},
+      },
+      boczny: {
+        "100x180": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x180-BOCZNY-22-listewki/353", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-100x180-bocni-22-lamel", de: "https://kavonbetten.de/metall-lattenrost-100x180-seitlich-klappbar-22-leisten", en: "https://kavonbeds.com/lift-up-metal-bed-frame-100x180-side-22-slats", fr: "https://kavonlits.fr/sommier-relevable-metallique-100x180-lateral-22-lattes"},
+        "100x190": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x190-BOCZNY-23-listewki/320", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-100x190-bocni-23-lamel", de: "https://kavonbetten.de/aufklappbarer-metall-lattenrost-100x190-seitlich-23-leisten", en: "https://kavonbeds.com/side-lifting-metal-bed-frame-100x190-23-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-100x190-lateral-23-lattes"},
+        "100x200": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x200-BOCZNY-24-listewki/115", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-100x200-bocni-24-lamel", de: "https://kavonbetten.de/metall-lattenrost-100x200-hochklappbar-seitlich-24-leisten", en: "https://kavonbeds.com/side-lifting-metal-bed-frame-100x200-side-opening-24-slats", fr: "https://kavonlits.fr/sommier-metallique-relevable-100x200-lateral-24-lattes"},
+        "100x210": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x210-BOCZNY-24-listewki/321", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-100x210-bocni-24-lamel", de: "https://kavonbetten.de/aufklappbarer-metalllattenrost-100x210-seitlich-24-leisten", en: "https://kavonbeds.com/lift-up-metal-bed-frame-100x210-side-opening-24-slats", fr: "https://kavonlits.fr/sommier-relevable-en-metal-100x210-lateral-24-lattes"},
+        "100x220": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-100x220-BOCZNY-25-listewek/322", cs: "https://kavonpostele.cz/kovovy-vyklopny-rost-100x220-bocni-25-lamel", de: "https://kavonbetten.de/metall-lattenrost-100x220-seitlich-25-leisten", en: "https://kavonbeds.com/metal-bed-frame-100x220-side-opening-25-slats", fr: "https://kavonlits.fr/sommier-relevable-en-metal-100x220-lateral-25-lattes"},
+        "120x180": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x180-BOCZNY-44-listewki/354", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-120x180-bocni-44-lamel", de: "https://kavonbetten.de/metall-lattenrost-120x180-seitlich-44-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-120x180-side-opening-44-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-120x180-lateral-44-lattes"},
+        "120x190": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x190-BOCZNY-46-listewek/323", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-120x190-bocni-46-lamel", de: "https://kavonbetten.de/metall-lattenrost-klappbar-120x190-seitlich-46-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-120x190-side-opening-46-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-120x190-lateral-46-lattes"},
+        "120x200": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x200-BOCZNY-48-listewek/122", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-120x200-bocni-48-lamel", de: "https://kavonbetten.de/metall-lattenrost-120x200-seitlich-48-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-120x200-side-opening-48-slats", fr: "https://kavonlits.fr/sommier-metallique-relevable-120x200-lateral-48-lattes"},
+        "120x210": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x210-BOCZNY-48-listewek/324", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-120x210-bocni-48-lamel", de: "https://kavonbetten.de/metall-lattenrost-120x210-seitlich-klappbar-48-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-120x210-side-opening-48-slats", fr: "https://kavonlits.fr/sommier-metallique-relevable-120x210-lateral-48-lattes"},
+        "120x220": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-120x220-BOCZNY-50-listewek/325", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-120x220-bocni-50-lamel", de: "https://kavonbetten.de/metallbettrahmen-120x220-seitlich-50-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-120x220-side-50-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-120x220-lateral-50-lattes"},
+        "140x180": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x180-BOCZNY-44-listewki/355", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-140x180-bocni-44-lamel", de: "https://kavonbetten.de/metall-lattenrost-140x180-seitlich-klappbar-44-leisten", en: "https://kavonbeds.com/side-opening-metal-lift-up-bed-frame-140x180-44-slats", fr: "https://kavonlits.fr/sommier-metallique-relevable-140x180-lateral-44-lattes"},
+        "140x190": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x190-BOCZNY-46-listewek/326", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-140x190-bocni-46-lamel", de: "https://kavonbetten.de/metalllattenrost-140x190-seitlich-46-leisten", en: "https://kavonbeds.com/metal-lifting-bed-frame-140x190-side-opening-46-slats", fr: "https://kavonlits.fr/sommier-metallique-relevable-140x190-lateral-46-lattes"},
+        "140x200": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x200-BOCZNY-48-listewek/123", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-140x200-bocni-48-lamel", de: "https://kavonbetten.de/metall-lattenrost-140x200-seitlich-klappbar-48-leisten", en: "https://kavonbeds.com/liftable-metal-bed-frame-140x200-side-opening-48-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-140x200-lateral-48-lattes"},
+        "140x210": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x210-BOCZNY-48-listewek/327", cs: "https://kavonpostele.cz/vyklopny-kovovy-postelovy-rost-140x210-bocni-48-lati", de: "https://kavonbetten.de/metall-lattenrost-140x210-seitlich-aufklappbar-48-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-140x210-side-opening-48-slats", fr: "https://kavonlits.fr/sommier-relevable-en-metal-140x210-lateral-48-lattes"},
+        "140x220": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-140x220-BOCZNY-50-listewek/328", cs: "https://kavonpostele.cz/zvedaci-kovovy-rost-140x220-bocni-50-lamel", de: "https://kavonbetten.de/metall-lattenrost-140x220-seitlich-hochklappbar-50-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-140x220-side-50-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-140x220-lateral-50-lattes"},
+        "160x180": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x180-BOCZNY-44-listewki/356", cs: "https://kavonpostele.cz/zvedaci-kovovy-rost-160x180-bocni-44-lamel", de: "https://kavonbetten.de/metall-lattenrost-160x180-seitlich-44-latten", en: "https://kavonbeds.com/side-lifting-metal-bed-frame-160x180-side-44-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-160x180-lateral-44-lattes"},
+        "160x190": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x190-BOCZNY-46-listewek/329", cs: "https://kavonpostele.cz/zvedaci-kovovy-rost-160x190-bocni-46-lamel", de: "https://kavonbetten.de/metall-lattenrost-160x190-seitlich-klappbar-46-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-160x190-side-46-slats", fr: "https://kavonlits.fr/sommier-metallique-relevable-160x190-lateral-46-lattes"},
+        "160x200": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x200-BOCZNY-48-listewek/124", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-160x200-bocni-48-lati", de: "https://kavonbetten.de/hochklappbarer-metall-lattenrost-160x200-seitlich-48-leisten", en: "https://kavonbeds.com/metal-bed-frame-160x200-side-opening-48-slats", fr: "https://kavonlits.fr/sommier-relevable-metallique-160x200-lateral-48-lattes"},
+        "160x210": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x210-BOCZNY-48-listewek/330", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-160x210-bocni-48-lamel", de: "https://kavonbetten.de/hochklappbarer-metall-lattenrost-160x210-seitlich-48-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-160x210-side-opening-48-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-160x210-lateral-48-lattes"},
+        "160x220": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-160x220-BOCZNY-50-listewek/331", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-160x220-bocni-50-lamel", de: "https://kavonbetten.de/hochklappbarer-metall-lattenrost-160x220-seitlich-50-leisten", en: "https://kavonbeds.com/liftable-metal-bed-frame-160x220-side-50-slats", fr: "https://kavonlits.fr/sommier-relevable-metallique-160x220-lateral-50-lattes"},
+        "180x180": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x180-BOCZNY-44-listewki/357", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-180x180-bocni-44-lamel", de: "https://kavonbetten.de/metallrahmen-180x180-seitlich-44-latten-aufklappbar", en: "https://kavonbeds.com/liftable-metal-bed-frame-180x180-side-opening-44-slats", fr: "https://kavonlits.fr/sommier-metallique-relevable-180x180-lateral-44-lattes"},
+        "180x190": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x190-BOCZNY-46-listewek/332", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-180x190-bocni-46-lamel", de: "https://kavonbetten.de/metall-lattenrost-180x190-seitlich-46-latten-hebemechanismus", en: "https://kavonbeds.com/side-lifting-metal-bed-frame-180x190-46-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-180x190-lateral-46-lattes"},
+        "180x200": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x200-BOCZNY-48-listewek/125", cs: "https://kavonpostele.cz/kovovy-vyklopny-rost-180x200-bocni-48-lamel", de: "https://kavonbetten.de/metall-lattenrost-180x200-seitlich-48-leisten", en: "https://kavonbeds.com/metal-lift-up-bed-frame-180x200-side-48-slats", fr: "https://kavonlits.fr/sommier-metallique-relevable-180x200-lateral-48-lattes"},
+        "180x210": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x210-BOCZNY-48-listewek/333", cs: "https://kavonpostele.cz/kovovy-zvedaci-rost-180x210-bocni-48-lamel", de: "https://kavonbetten.de/metall-lattenrost-180x210-seitlich-48-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-180x210-side-opening-48-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-180x210-lateral-48-lattes"},
+        "180x220": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-180x220-BOCZNY-50-listewek/334", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-180x220-bocni-50-lamel", de: "https://kavonbetten.de/metall-lattenrost-180x220-seitlich-50-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-180x220-side-opening-50-slats", fr: "https://kavonlits.fr/sommier-metallique-relevable-180x220-lateral-50-lattes"},
+        "80x200": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-80x200-BOCZNY-24-listewki/335", cs: "https://kavonpostele.cz/zvedaci-kovovy-rost-80x200-bocni-24-lamel", de: "https://kavonbetten.de/metall-lattenrost-80x200-seitlich-24-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-80x200-side-opening-24-slats", fr: "https://kavonlits.fr/sommier-relevable-en-metal-80x200-lateral-24-lattes"},
+        "90x180": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x180-BOCZNY-22-listewki/352", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-90x180-bocni-22-lamel", de: "https://kavonbetten.de/klappbarer-metalllattenrost-90x180-seitlich-22-leisten", en: "https://kavonbeds.com/lifting-metal-bed-frame-90x180-side-22-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-90x180-lateral-22-lattes"},
+        "90x190": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x190-BOCZNY-23-listewki/317", cs: "https://kavonpostele.cz/zvedaci-kovovy-rost-90x190-bocni-23-lamel", de: "https://kavonbetten.de/lattenrost-90x190-seitlich-klappbar-metallrahmen-23-leisten", en: "https://kavonbeds.com/metal-lift-up-bed-frame-90x190-side-opening-23-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-90x190-lateral-23-lattes"},
+        "90x200": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x200-BOCZNY-24-listewki/114", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-90x200-bocni-24-lamel", de: "https://kavonbetten.de/metall-lattenrost-90x200-seitlich-klappbar-24-leisten", en: "https://kavonbeds.com/liftable-metal-bed-frame-90x200-side-opening-24-slats", fr: "https://kavonlits.fr/sommier-relevable-metal-90x200-lateral-24-lattes"},
+        "90x210": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x210-BOCZNY-24-listewki/318", cs: "https://kavonpostele.cz/vyklopny-metalovy-rost-90x210-bocni-24-lamel", de: "https://kavonbetten.de/hebe-lattenrost-metallrahmen-90x210-seitlich-24-leisten", en: "https://kavonbeds.com/metal-lifting-bed-frame-90x210-side-24-slats", fr: "https://kavonlits.fr/sommier-metallique-relevable-90x210-lateral-24-lattes"},
+        "90x220": {pl: "https://kavon.pl/pl/p/Podnoszony-stelaz-metalowy-90x220-BOCZNY-25-listewek/319", cs: "https://kavonpostele.cz/vyklopny-kovovy-rost-90x220-bocni-25-lamel", de: "https://kavonbetten.de/anhebbarer-metalllattenrost-90x220-seitlich-25-latten", en: "https://kavonbeds.com/metal-bed-frame-90x220-side-lifting-25-slats", fr: "https://kavonlits.fr/sommier-metallique-relevable-90x220-lateral-25-lattes"},
+      },
+      crane: {
+        "120x200": {pl: "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-120x200-48-listewek-latwe-scielenie/174", cs: "https://kavonpostele.cz/vyklopny-rost-crane-120x200-48-lamel-snadne-stlani", de: "https://kavonbetten.de/hub-lattenrost-crane-120x200-48-leisten-komfort-bettenmachen", en: "https://kavonbeds.com/crane-lifting-bed-frame-120x200-48-slats-easy-bedding", fr: "https://kavonlits.fr/sommier-de-lit-relevable-crane-120x200-48-lattes-facile"},
+        "140x200": {pl: "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-140x200-48-listewek-latwe-scielenie/175", cs: "https://kavonpostele.cz/vyklopny-postelovy-rost-crane-140x200-48-lamel-snadne-stlani", de: "https://kavonbetten.de/lattenrost-aufklappbar-crane-140x200-48-leisten", en: "https://kavonbeds.com/crane-140x200-lifting-bed-frame-48-slats-easy-bed-making", fr: "https://kavonlits.fr/sommier-relevable-crane-140x200-48-lattes-literie-facile"},
+        "160x200": {pl: "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-160x200-48-listewek-latwe-scielenie/176", cs: "https://kavonpostele.cz/vyklopny-postelovy-rost-crane-160x200-48-lamel-snadne-stlani", de: "https://kavonbetten.de/hebbarer-lattenrost-crane-160x200-48-leisten-einfaches-bettenmachen", en: "https://kavonbeds.com/crane-lift-up-bed-frame-160x200-48-slats-easy-bedmaking", fr: "https://kavonlits.fr/sommier-relevable-crane-160x200-48-lattes-litage-facile"},
+        "180x200": {pl: "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-180x200-48-listewek-latwe-scielenie/177", cs: "https://kavonpostele.cz/vyklopny-postelovy-rost-crane-180x200-48-lamel-snadne-stlani", de: "https://kavonbetten.de/lattenrost-crane-180x200-klappbar-easy-bedding-48-leisten", en: "https://kavonbeds.com/lifting-bed-frame-crane-180x200-48-slats-easy-bed-making", fr: "https://kavonlits.fr/sommier-relevable-crane-180x200-48-lattes-aide-refection-lit"},
+        "200x200": {pl: "https://kavon.pl/pl/p/Stelaz-do-lozka-podnoszony-CRANE-200x200-48-listewek-latwe-scielenie/178", cs: "https://kavonpostele.cz/vyklopny-postelovy-rost-crane-200x200-48-lamel-snadne-stlani", de: "https://kavonbetten.de/klappbarer-lattenrost-crane-200x200-48-leisten-einfaches-bettenmachen", en: "https://kavonbeds.com/crane-lifting-bed-frame-200x200-48-slats-easy-bed-making", fr: "https://kavonlits.fr/sommier-lit-relevable-crane-200x200-48-lattes-lit-facile"},
+      },
+      hotel: {
+        "100x200": {pl: "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-100x200-24-listewki-hotelowy/207", cs: "https://kavonpostele.cz/samonosny-kovovy-rost-100x200-24-lamel-hotelovy", de: "https://kavonbetten.de/freistehender-metall-lattenrost-100x200-24-leisten-hotel", en: "https://kavonbeds.com/self-supporting-metal-bed-frame-100x200-24-slats-hotel-quality", fr: "https://kavonlits.fr/sommier-metallique-autoportant-100x200-24-lattes-hotel"},
+        "120x200": {pl: "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-120x200-48-listewek-hotelowy/208", cs: "https://kavonpostele.cz/samonosny-kovovy-rost-120x200-48-lamel-hotelovy", de: "https://kavonbetten.de/selbsttragender-metall-lattenrost-120x200-48-leisten-hotelqualitaet", en: "https://kavonbeds.com/self-supporting-metal-bed-frame-120x200-48-slats-hotel-grade", fr: "https://kavonlits.fr/sommier-metallique-autoportant-120x200-48-lattes-hotel"},
+        "140x200": {pl: "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-140x200-48-listewek-hotelowy/209", cs: "https://kavonpostele.cz/samonosny-kovovy-rost-140x200-48-lamel-hotelovy", de: "https://kavonbetten.de/freistehender-metall-lattenrost-140x200-48-leisten-hotel-qualitaet", en: "https://kavonbeds.com/self-supporting-metal-bed-frame-140x200-48-slats-hotel", fr: "https://kavonlits.fr/sommier-metallique-autoportant-140x200-48-lattes-hotel"},
+        "160x200": {pl: "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-160x200-48-listewek-hotelowy/210", cs: "https://kavonpostele.cz/samonosny-kovovy-rost-160x200-48-lati-hotelovy", de: "https://kavonbetten.de/freistehender-metall-lattenrost-160x200-48-leisten-hotel-qualitaet", en: "https://kavonbeds.com/self-supporting-metal-bed-frame-160x200-48-slats-hotel", fr: "https://kavonlits.fr/sommier-metallique-autoportant-160x200-48-lattes-hotelier"},
+        "180x200": {pl: "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-180x200-48-listewek-hotelowy/211", cs: "https://kavonpostele.cz/samonosny-kovovy-rost-180x200-48-lamel-hotelovy", de: "https://kavonbetten.de/freistehender-metall-lattenrost-180x200-48-leisten-hotel", en: "https://kavonbeds.com/self-supporting-metal-bed-frame-180x200-48-slats-hotel-grade", fr: "https://kavonlits.fr/sommier-metallique-autoportant-180x200-48-lattes-hotel"},
+        "200x200": {pl: "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-200x200-48-listewek-hotelowy/212", cs: "https://kavonpostele.cz/samonosny-kovovy-rost-200x200-48-lamel-hotelovy", de: "https://kavonbetten.de/selbsttragender-metalllattenrost-200x200-48-leisten-hotelqualitaet", en: "https://kavonbeds.com/self-supporting-metal-bed-frame-200x200-48-slats-hotel", fr: "https://kavonlits.fr/sommier-metallique-autoportant-200x200-48-lattes-hotel"},
+        "80x200": {pl: "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-80x200-24-listewki-hotelowy/205", cs: "https://kavonpostele.cz/samonosny-kovovy-rost-80x200-24-lamel-hotelovy", de: "https://kavonbetten.de/selbsttragender-metall-lattenrost-80x200-24-leisten-hotelqualitaet", en: "https://kavonbeds.com/self-supporting-metal-bed-frame-80x200-24-slats-hotel", fr: "https://kavonlits.fr/sommier-metallique-autoportant-80x200-24-lattes-hotel"},
+        "90x200": {pl: "https://kavon.pl/pl/p/Samonosny-metalowy-stelaz-90x200-24-listewki-hotelowy/206", cs: "https://kavonpostele.cz/samonosny-kovovy-rost-90x200-24-lamel-hotelovy", de: "https://kavonbetten.de/selbsttragender-metalllattenrost-90x200-24-leisten", en: "https://kavonbeds.com/self-supporting-metal-bed-frame-90x200-24-slats-hotel-quality", fr: "https://kavonlits.fr/sommier-metallique-autoportant-90x200-24-lattes"},
+      },
+      wklad: {
+        "100x200": {pl: "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-100x200-24-listewki/127", cs: "https://kavonpostele.cz/kovovy-rost-vlozka-do-postele-100x200-24-lamel", de: "https://kavonbetten.de/metall-lattenrost-100x200-24-leisten-betteinsatz", en: "https://kavonbeds.com/metal-bed-frame-insert-100x200-24-slats", fr: "https://kavonlits.fr/sommier-metallique-100x200-24-lattes-bouleau"},
+        "120x200": {pl: "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-120x200-48-listewek/128", cs: "https://kavonpostele.cz/kovovy-postelovy-rost-120x200-48-lamel", de: "https://kavonbetten.de/metalllattenrost-betteinsatz-120x200-48-leisten", en: "https://kavonbeds.com/metal-bed-frame-insert-120x200-48-slats", fr: "https://kavonlits.fr/sommier-metallique-cadre-de-lit-120x200-48-lattes"},
+        "140x200": {pl: "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-140x200-48-listewek/129", cs: "https://kavonpostele.cz/kovovy-rost-do-postele-140x200-48-list", de: "https://kavonbetten.de/metall-lattenrost-betteinsatz-140x200-48-leisten", en: "https://kavonbeds.com/metal-bed-frame-base-140x200-48-slats", fr: "https://kavonlits.fr/sommier-lattes-metal-140x200-48-lattes"},
+        "160x200": {pl: "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-160x200-48-listewek/130", cs: "https://kavonpostele.cz/kovovy-rost-do-postele-160x200-48-lamel", de: "https://kavonbetten.de/metall-lattenrost-betteinsatz-160x200-48-leisten", en: "https://kavonbeds.com/metal-bed-frame-insert-160x200-48-slats", fr: "https://kavonlits.fr/sommier-metallique-160x200-48-lattes-bouleau"},
+        "180x200": {pl: "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-180x200-48-listewek/131", cs: "https://kavonpostele.cz/kovovy-rost-do-postele-180x200-48-lamel", de: "https://kavonbetten.de/metall-lattenrost-betteinsatz-180x200-48-leisten-birkenholz", en: "https://kavonbeds.com/metal-bed-frame-insert-180x200-48-slats-birch", fr: "https://kavonlits.fr/sommier-metal-180x200-48-lattes-bouleau"},
+        "200x200": {pl: "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-200x200-48-listewek/132", cs: "https://kavonpostele.cz/kovovy-rost-do-postele-200x200-48-lamel", de: "https://kavonbetten.de/metall-lattenrost-200x200-48-leisten-betteinsatz-birke", en: "https://kavonbeds.com/metal-bed-frame-slat-base-200x200-48-slats", fr: "https://kavonlits.fr/sommier-a-lattes-en-metal-200x200-48-lattes"},
+        "80x200": {pl: "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-80x200-24-listewki/221", cs: "https://kavonpostele.cz/kovovy-postelovy-rost-80x200-24-lamel", de: "https://kavonbetten.de/metall-lattenrost-80x200-24-leisten-betteinsatz", en: "https://kavonbeds.com/metal-bed-frame-slat-base-80x200-24-slats", fr: "https://kavonlits.fr/sommier-metallique-80x200-24-lattes-bouleau"},
+        "90x200": {pl: "https://kavon.pl/pl/p/Metalowy-stelaz-wklad-do-lozka-90x200-24-listewki/126", cs: "https://kavonpostele.cz/kovovy-rost-do-postele-90x200-24-lamel", de: "https://kavonbetten.de/metall-lattenrost-betteinsatz-90x200-24-leisten-birke", en: "https://kavonbeds.com/metal-bed-frame-insert-90x200-24-slats", fr: "https://kavonlits.fr/sommier-metallique-90x200-24-lattes"},
+      },
+      polk: {
+        "120x200": {pl: "https://kavon.pl/pl/p/Mechanizm-do-polkotapczanu-120x200cm-PIONOWY-stelaz-metalowy-40-listewek/214", cs: "https://kavonpostele.cz/mechanismus-pro-vyklopnou-postel-120x200cm-svisly-kovovy-rost", de: "https://kavonbetten.de/schrankbett-mechanismus-120x200cm-vertikaler-metallrahmen-40-latten", en: "https://kavonbeds.com/mechanism-for-murphy-bed-120x200cm-vertical-metal-frame-40-slats", fr: "https://kavonlits.fr/mecanisme-lit-escamotable-120x200-sommier-vertical-40-lattes"},
+        "140x200": {pl: "https://kavon.pl/pl/p/Mechanizm-do-polkotapczanu-140x200cm-PIONOWY-stelaz-metalowy-40-listewek/215", cs: "https://kavonpostele.cz/mechanismus-pro-sklopnou-postel-140x200cm-vertikalni-kovovy-ram", de: "https://kavonbetten.de/mechanismus-wandklappbett-140x200cm-vertikaler-metallrahmen-40-latten", en: "https://kavonbeds.com/wall-bed-mechanism-140x200cm-vertical-metal-frame-40-slats", fr: "https://kavonlits.fr/mecanisme-lit-escamotable-140x200-sommier-vertical-metal"},
+        "160x200": {pl: "https://kavon.pl/pl/p/Mechanizm-do-polkotapczanu-160x200cm-PIONOWY-stelaz-metalowy-40-listewek/219", cs: "https://kavonpostele.cz/nohy-h-250mm-pro-samonosne-kovove-rosty-box-sada-4-kusy", de: "https://kavonbetten.de/bettfuesse-h250mm-box-metalllattenrost-set-4stk", en: "https://kavonbeds.com/h-250mm-metal-legs-box-self-supporting-frames-set-4", fr: "https://kavonlits.fr/pieds-h-250mm-sommiers-metalliques-box-lot-4"},
+        "90x200": {pl: "https://kavon.pl/pl/p/Mechanizm-do-polkotapczanu-90x200cm-PIONOWY-stelaz-metalowy-20-listewek/213", cs: "https://kavonpostele.cz/mechanismus-pro-vyklopnou-postel-90x200-vertikalni-kovovy-ram", de: "https://kavonbetten.de/mechanismus-fuer-schrankbett-90x200cm-vertikal-metallrahmen-20-leisten", en: "https://kavonbeds.com/wall-bed-mechanism-90x200cm-vertical-metal-frame-20-slats", fr: "https://kavonlits.fr/mecanisme-lit-escamotable-90x200cm-cadre-metal-vertical-20-lattes"},
+      },
+    };
+
+    // ─── Pomocnicze: pobierz URL dla danego typu, w, l ────────
+    function getUrl(frameId, w, l) {
+      // w="80cm", l="200cm" → klucz "80x200"
+      const key = w.replace('cm','') + 'x' + l.replace('cm','');
+      return (PRODUCT_URLS[frameId]?.[key]?.[LANG]) || '#';
+    }
+
+    function isAvailable(frameId, w, l) {
+      const url = getUrl(frameId, w, l);
+      return url && url !== '#';
+    }
+
+    // ─── Buduj tablicę frames dla aktualnego języka ───────────
+    const WIDTHS  = ["80cm","90cm","100cm","120cm","140cm","160cm","180cm","200cm"];
+    const LENGTHS = ["180cm","190cm","200cm","210cm","220cm"];
+
+    const frames = T.frames.map(f => {
+      const availability = {};
+      WIDTHS.forEach(w => {
+        availability[w] = {};
+        LENGTHS.forEach(l => { availability[w][l] = isAvailable(f.id, w, l); });
+      });
+      const links = {};
+      WIDTHS.forEach(w => {
+        links[w] = {};
+        LENGTHS.forEach(l => { links[w][l] = getUrl(f.id, w, l); });
+      });
+      return {
+        name: f.name,
+        image: FRAME_IMAGES[f.id],
+        advice: `<p>${f.advice}</p>`,
+        adviceClass: FRAME_ADVICE_CLASS[f.id],
+        availability,
+        links,
+      };
+    });
+
+    // ─── Aplikuj tłumaczenia do statycznych elementów HTML ────
+    document.getElementById('html-root').lang = T.htmlLang;
+    document.getElementById('page-title').textContent = T.pageTitle;
+    document.getElementById('page-desc').content = T.pageDesc;
+    document.getElementById('hdr-eyebrow').textContent = T.eyebrow;
+    document.getElementById('hdr-title').textContent = T.h1;
+    document.getElementById('hdr-badge').textContent = T.badge;
+    document.getElementById('lbl-width').textContent = T.lblWidth;
+    document.getElementById('lbl-length').textContent = T.lblLength;
+    document.getElementById('step1-h2').textContent = T.step1;
+    document.getElementById('step2-h2').textContent = T.step2;
+    document.getElementById('productButton').textContent = T.btnGo;
+    document.getElementById('hdr-logo').alt = T.badge;
+
+    // Link na logo
+    const logoImg = document.getElementById('hdr-logo');
+    const logoWrap = document.createElement('a');
+    logoWrap.href = T.logoHref;
+    logoImg.parentNode.insertBefore(logoWrap, logoImg);
+    logoWrap.appendChild(logoImg);
+
+    // Opcje selectów — przetłumacz placeholder
+    const widthSelect  = document.getElementById('width');
+    const lengthSelect = document.getElementById('length');
+    widthSelect.options[0].textContent  = T.optWidth;
+    lengthSelect.options[0].textContent = T.optLength;
+
+    // ─── Oryginalna logika (niezmieniona) ─────────────────────
         const frameStep = document.getElementById('frameStep');
         const frameTypes = document.getElementById('frameTypes');
         const confirmation = document.getElementById('confirmation');
@@ -988,10 +841,10 @@
         function updateConfirmation() {
             if (widthSelect.value && lengthSelect.value && selectedFrame) {
                 confirmation.style.display = 'block';
-                confirmationText.textContent = `Wybrano stelaż: ${selectedFrame.name} (${widthSelect.value} x ${lengthSelect.value})`;
-productButton.onclick = () => {
-    window.open(selectedFrame.links[widthSelect.value][lengthSelect.value], '_blank');
-};
+                confirmationText.textContent = `${T.selPfx} ${selectedFrame.name} (${widthSelect.value} x ${lengthSelect.value})`;
+                productButton.onclick = () => {
+                    window.open(selectedFrame.links[widthSelect.value][lengthSelect.value], '_blank');
+                };
                 advice.innerHTML = selectedFrame.advice;
                 advice.className = `advice ${selectedFrame.adviceClass}`;
             } else {
