@@ -500,7 +500,8 @@
     </div>
 
     <script>
-    // ─── Wykrywanie domeny → język ────────────────────────────
+    // ─── Wykrywanie języka ────────────────────────────────────
+    // Priorytet: ?lang=xx → referrer → hostname → 'pl'
     const DOMAIN_LANG = {
       'kavon.pl':           'pl', 'www.kavon.pl':           'pl',
       'kavonpostele.cz':    'cs', 'www.kavonpostele.cz':    'cs',
@@ -508,7 +509,13 @@
       'kavonlits.fr':       'fr', 'www.kavonlits.fr':       'fr',
       'kavonbeds.com':      'en', 'www.kavonbeds.com':      'en',
     };
-    const LANG = DOMAIN_LANG[window.location.hostname] || 'pl';
+    const VALID_LANGS = new Set(['pl','cs','de','fr','en']);
+    const _urlParam = new URLSearchParams(window.location.search).get('lang');
+    const _referrer = (() => { try { return new URL(document.referrer).hostname.replace(/^www\./,''); } catch(e) { return ''; } })();
+    const LANG = (VALID_LANGS.has(_urlParam) ? _urlParam : null)
+              || DOMAIN_LANG[window.location.hostname]
+              || DOMAIN_LANG[_referrer]
+              || 'pl';
 
     // ─── Tłumaczenia UI ───────────────────────────────────────
     const TR = {
