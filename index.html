@@ -745,10 +745,32 @@
     };
 
     // ─── Pomocnicze: pobierz URL dla danego typu, w, l ────────
+    // Typy z selektorem długości na stronie produktu — link zawsze do x200
+    // wkład + hotel: 180/190/200/210/220cm
+    // crane: 190/200/210/220cm (brak 180cm)
+    const VARIANT_FALLBACK_200 = { wklad: true, hotel: true };
+    const CRANE_FALLBACK_200   = true; // CRANE: 190+ → x200
+
     function getUrl(frameId, w, l) {
-      // w="80cm", l="200cm" → klucz "80x200"
-      const key = w.replace('cm','') + 'x' + l.replace('cm','');
-      return (PRODUCT_URLS[frameId]?.[key]?.[LANG]) || '#';
+      const wNum = w.replace('cm','');
+      const lNum = l.replace('cm','');
+      const key  = wNum + 'x' + lNum;
+
+      // Bezpośredni URL (np. BOX, boczny — każda kombinacja osobna)
+      const direct = PRODUCT_URLS[frameId]?.[key]?.[LANG];
+      if (direct && direct !== '#') return direct;
+
+      // Fallback do x200 dla typów z selektorem długości
+      if (VARIANT_FALLBACK_200[frameId]) {
+        const key200 = wNum + 'x200';
+        return (PRODUCT_URLS[frameId]?.[key200]?.[LANG]) || '#';
+      }
+      if (frameId === 'crane' && lNum !== '180') {
+        const key200 = wNum + 'x200';
+        return (PRODUCT_URLS[frameId]?.[key200]?.[LANG]) || '#';
+      }
+
+      return '#';
     }
 
     function isAvailable(frameId, w, l) {
